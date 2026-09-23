@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<meta name="theme-color" content="#080d12">
+<meta name="theme-color" content="#061015">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="apple-mobile-web-app-title" content="15MIN AI">
@@ -12,223 +12,218 @@
 <link rel="apple-touch-icon" href="./icon.svg">
 <title>15MIN AI WORKOUT</title>
 <style>
-:root{--bg:#080d12;--panel:#101821;--panel2:#17232e;--line:#263746;--text:#f6f8fb;--muted:#95a5b4;--accent:#52f0b0;--accent2:#7cb7ff;--warn:#ffd56a}
-*{box-sizing:border-box}html,body{margin:0;min-height:100%;background:radial-gradient(circle at 50% -10%,#15302a 0,#0c141b 34%,#080d12 70%);color:var(--text);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}button,input{font:inherit}button{cursor:pointer}.app{max-width:720px;margin:auto;padding:calc(18px + env(safe-area-inset-top)) 16px calc(28px + env(safe-area-inset-bottom))}
-.screen{display:none;position:relative;min-height:calc(100vh - 60px)}.screen.active{display:block}.screen.visual{isolation:isolate;overflow:hidden}.screen.visual>*:not(.ambient){position:relative;z-index:2}.ambient{position:fixed;inset:0;z-index:0;pointer-events:none;overflow:hidden;background:linear-gradient(140deg,#071016 0%,#0a161d 48%,#081018 100%)}.ambient .orb{position:absolute;border-radius:50%;filter:blur(34px);opacity:.42;mix-blend-mode:screen}.ambient .o1{width:46vw;height:46vw;max-width:420px;max-height:420px;background:rgba(64,255,188,.42);left:-12vw;top:12vh;animation:float1 8s ease-in-out infinite alternate}.ambient .o2{width:38vw;height:38vw;max-width:360px;max-height:360px;background:rgba(80,120,255,.35);right:-10vw;top:38vh;animation:float2 10s ease-in-out infinite alternate}.ambient .o3{width:28vw;height:28vw;max-width:260px;max-height:260px;background:rgba(64,255,215,.28);left:38vw;bottom:4vh;animation:float3 7s ease-in-out infinite alternate}.ambient .gridfx{position:absolute;inset:-20%;opacity:.22;background:repeating-linear-gradient(118deg,transparent 0 34px,rgba(82,240,176,.14) 35px 36px,transparent 37px 72px);animation:sweep 9s linear infinite}.ambient .pulse{position:absolute;left:50%;top:56%;width:70vmin;height:70vmin;border:1px solid rgba(82,240,176,.22);border-radius:50%;transform:translate(-50%,-50%);animation:pulseRing 3.4s ease-out infinite}.ambient .pulse.p2{animation-delay:1.7s}.screen.visual.ai .ambient{background:radial-gradient(circle at 50% 12%,rgba(34,255,197,.12),transparent 24%),linear-gradient(155deg,#071018,#091623 50%,#0b0d1f)}.screen.visual.ai .ambient .gridfx{opacity:.35;background:linear-gradient(90deg,transparent 49%,rgba(82,240,176,.14) 50%,transparent 51%),linear-gradient(0deg,transparent 49%,rgba(82,240,176,.12) 50%,transparent 51%);background-size:44px 44px;animation:gridMove 6s linear infinite}.screen.noVisual .ambient{display:none}@keyframes float1{from{transform:translate3d(-4%,0,0) scale(1)}to{transform:translate3d(22%,14%,0) scale(1.2)}}@keyframes float2{from{transform:translate3d(0,0,0) scale(1)}to{transform:translate3d(-24%,-12%,0) scale(1.18)}}@keyframes float3{from{transform:translate3d(0,0,0) scale(.9)}to{transform:translate3d(16%,-18%,0) scale(1.2)}}@keyframes sweep{from{transform:translateX(-8%)}to{transform:translateX(8%)}}@keyframes pulseRing{0%{opacity:.5;transform:translate(-50%,-50%) scale(.35)}100%{opacity:0;transform:translate(-50%,-50%) scale(1.15)}}@keyframes gridMove{from{transform:translateY(0)}to{transform:translateY(44px)}}.top{display:flex;align-items:center;justify-content:space-between;gap:12px}.eyebrow{font-size:11px;letter-spacing:.18em;font-weight:900;color:var(--muted)}.title{font-size:31px;font-weight:950;line-height:1.02;margin:5px 0}.gear,.back{width:46px;height:46px;border-radius:14px;border:1px solid var(--line);background:#101821;color:var(--text);font-size:21px}.hero{margin-top:22px;padding:22px;border-radius:26px;background:linear-gradient(145deg,#13211f,#0e171f);border:1px solid #1d3a34;text-align:center}.logo{width:96px;height:96px;margin:0 auto 12px;display:block}.hero h2{margin:0;font-size:25px}.hero p{margin:8px auto 0;max-width:420px;color:var(--muted);line-height:1.6;font-size:14px}.start{width:100%;min-height:58px;border:0;border-radius:18px;background:var(--accent);color:#06110c;font-size:18px;font-weight:950;margin-top:18px}.recommend{margin-top:11px;color:var(--accent);font-size:13px;font-weight:800}.section{margin-top:22px}.section h3{font-size:16px;margin:0 0 10px}.days{display:grid;grid-template-columns:repeat(5,1fr);gap:8px}.day{min-height:56px;border-radius:15px;border:1px solid var(--line);background:#101821;color:var(--text);font-weight:900}.day.recommended{border-color:var(--accent);box-shadow:inset 0 0 0 1px var(--accent)}.day.disabled{opacity:.42}.hint{font-size:12px;color:var(--muted);margin-top:9px}.card{background:rgba(16,24,33,.96);border:1px solid var(--line);border-radius:20px;padding:16px;margin-top:12px}.row{display:flex;justify-content:space-between;align-items:center;gap:12px}.big{font-size:27px;font-weight:950}.muted{color:var(--muted)}.mini{font-size:12px}.exerciseBox{margin-top:14px;padding:18px;border-radius:20px;background:linear-gradient(145deg,#17252c,#101922);border:1px solid #284039}.exerciseName{font-size:25px;font-weight:950;margin-bottom:8px}.spec{font-size:16px;color:#dfe8ef}.progress{display:flex;gap:6px;margin-top:13px}.dot{height:7px;flex:1;border-radius:999px;background:#22313e}.dot.on{background:var(--accent)}.complete{width:100%;min-height:56px;margin-top:16px;border:0;border-radius:16px;background:var(--accent);color:#07120d;font-weight:950;font-size:17px}.complete:disabled{opacity:.45}.restBox{text-align:center}.restLabel{font-size:13px;color:var(--muted)}.restTime{font-size:58px;font-weight:950;font-variant-numeric:tabular-nums;margin:6px 0}.bar{height:8px;background:#1d2934;border-radius:999px;overflow:hidden}.bar>div{height:100%;width:100%;background:var(--accent);transition:width .25s linear}.nextText{margin-top:12px;font-size:14px;color:var(--muted)}.settings label{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:14px 0;border-bottom:1px solid var(--line)}.toggle{width:50px;height:30px;appearance:none;background:#293846;border-radius:999px;position:relative;transition:.2s}.toggle:after{content:"";position:absolute;top:3px;left:3px;width:24px;height:24px;background:white;border-radius:50%;transition:.2s}.toggle:checked{background:var(--accent)}.toggle:checked:after{left:23px}.range{width:150px}.finish{text-align:center;padding:24px 8px}.finish h2{font-size:28px;margin:8px 0}.finish p{color:var(--muted);line-height:1.6}.secondary{width:100%;min-height:50px;border-radius:15px;border:1px solid var(--line);background:#111b24;color:var(--text);font-weight:800;margin-top:10px}.statusPill{padding:8px 11px;border:1px solid var(--line);border-radius:999px;color:var(--muted);font-size:12px}@media(max-width:420px){.days{grid-template-columns:repeat(5,1fr)}.day{font-size:12px}.title{font-size:28px}.exerciseName{font-size:22px}}
+:root{
+  --bg:#061015;--panel:rgba(8,18,24,.72);--panel2:rgba(11,24,31,.8);
+  --line:rgba(112,219,196,.24);--text:#f6fbfc;--muted:#a9bac1;
+  --accent:#58f0c3;--accent2:#35d9ff;--danger:#ff7d7d;
+}
+*{box-sizing:border-box}html,body{margin:0;min-height:100%;background:#061015;color:var(--text);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}
+button,input,select{font:inherit}button{cursor:pointer}
+.app{max-width:720px;margin:auto;min-height:100vh;padding:calc(18px + env(safe-area-inset-top)) 16px calc(24px + env(safe-area-inset-bottom));position:relative;overflow:hidden}
+.screen{display:none;position:relative;min-height:calc(100vh - 60px)}.screen.active{display:block}
+.top{display:flex;align-items:center;justify-content:space-between;gap:12px;position:relative;z-index:5}
+.eyebrow{font-size:11px;letter-spacing:.22em;font-weight:900;color:#b7c8cf}.title{font-size:30px;font-weight:950;line-height:1.02;margin-top:5px}
+.iconBtn{width:46px;height:46px;border-radius:14px;border:1px solid var(--line);background:rgba(8,20,27,.76);color:white;font-size:21px;backdrop-filter:blur(12px)}
+.hero{position:relative;z-index:3;margin-top:18px;padding:24px 20px 22px;border:1px solid var(--line);border-radius:26px;background:linear-gradient(180deg,rgba(9,22,28,.62),rgba(6,14,19,.82));backdrop-filter:blur(10px);text-align:center;overflow:hidden}
+.logo{width:96px;height:96px;margin:2px auto 12px;display:block;filter:drop-shadow(0 0 18px rgba(88,240,195,.28))}
+.hero h2{font-size:28px;margin:0}.hero p{color:var(--muted);font-size:14px;line-height:1.6;margin:10px auto 0;max-width:440px}
+.start{width:100%;min-height:58px;margin-top:18px;border:0;border-radius:18px;background:linear-gradient(90deg,#50eec0,#60f3d3);color:#02120d;font-weight:950;font-size:18px;box-shadow:0 0 26px rgba(88,240,195,.22)}
+.recommend{margin-top:11px;color:var(--accent);font-size:13px;font-weight:850}
+.quickGrid{display:grid;grid-template-columns:repeat(3,1fr);gap:9px;margin-top:12px}.quickBtn{min-height:58px;border-radius:15px;border:1px solid var(--line);background:rgba(8,20,27,.72);color:white;font-weight:800}
+.section{position:relative;z-index:3;margin-top:20px}.section h3{font-size:15px;margin:0 0 10px}
+.days{display:grid;grid-template-columns:repeat(5,1fr);gap:8px}.day{min-height:56px;border-radius:15px;border:1px solid var(--line);background:rgba(9,19,26,.72);color:white;font-weight:900}.day.recommended{border-color:var(--accent);box-shadow:inset 0 0 0 1px var(--accent),0 0 18px rgba(88,240,195,.14)}.day.disabled{opacity:.35}
+.card{position:relative;z-index:3;background:var(--panel);border:1px solid var(--line);border-radius:22px;padding:16px;margin-top:12px;backdrop-filter:blur(12px)}
+.row{display:flex;justify-content:space-between;align-items:center;gap:12px}.muted{color:var(--muted)}.mini{font-size:12px}.pill{padding:8px 11px;border:1px solid var(--line);border-radius:999px;color:#c4d5da;font-size:12px;background:rgba(6,14,18,.5)}
+.prepareList .card b{font-size:17px}
+.workHero{position:relative;z-index:3;margin-top:18px;padding:18px;border-radius:24px;background:linear-gradient(180deg,rgba(6,15,20,.52),rgba(5,12,16,.82));border:1px solid var(--line);backdrop-filter:blur(12px)}
+.exerciseName{font-size:29px;font-weight:950;margin-top:4px}.muscle{font-size:13px;color:#c4d6dc;margin-top:3px}
+.ring{width:220px;height:220px;border-radius:50%;margin:18px auto 8px;display:grid;place-items:center;position:relative;background:conic-gradient(var(--accent) 0 32%,rgba(255,255,255,.12) 32% 100%);box-shadow:0 0 34px rgba(88,240,195,.08)}
+.ring:before{content:"";position:absolute;inset:17px;border-radius:50%;background:rgba(4,11,15,.86);border:1px solid rgba(255,255,255,.06)}
+.ringInner{position:relative;z-index:2;text-align:center}.ringSet{font-size:13px;color:#d5e2e6}.ringNum{font-size:58px;font-weight:950;line-height:1;margin-top:5px}.ringUnit{font-size:14px;color:#c0d0d5;margin-top:5px}
+.metricGrid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:12px}.metric{padding:14px 10px;border-radius:16px;background:rgba(6,14,19,.58);border:1px solid var(--line);text-align:center}.metric .v{font-size:22px;font-weight:900}.metric .l{font-size:11px;color:var(--muted);margin-top:4px}
+.complete{width:100%;min-height:56px;margin-top:14px;border:0;border-radius:16px;background:var(--accent);color:#04130f;font-weight:950;font-size:17px}
+.secondary{width:100%;min-height:50px;border-radius:15px;border:1px solid var(--line);background:rgba(8,20,27,.7);color:white;font-weight:800;margin-top:10px}
+.restCard{position:relative;z-index:3;margin-top:26px;padding:24px 18px;border:1px solid var(--line);border-radius:26px;background:rgba(6,15,20,.56);backdrop-filter:blur(12px);text-align:center}
+.restRing{width:235px;height:235px;border-radius:50%;margin:20px auto 8px;display:grid;place-items:center;background:conic-gradient(var(--accent) 0 75%,rgba(255,255,255,.12) 75% 100%);position:relative}
+.restRing:before{content:"";position:absolute;inset:18px;border-radius:50%;background:rgba(4,11,15,.88)}
+.restTime{position:relative;z-index:2;font-size:60px;font-weight:950;font-variant-numeric:tabular-nums}.restNext{margin-top:10px;color:#c7d8dd}
+.restActions{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:18px}
+.settings label{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:15px 0;border-bottom:1px solid rgba(255,255,255,.08)}.toggle{width:50px;height:30px;appearance:none;background:#293846;border-radius:999px;position:relative;transition:.2s}.toggle:after{content:"";position:absolute;top:3px;left:3px;width:24px;height:24px;background:white;border-radius:50%;transition:.2s}.toggle:checked{background:var(--accent)}.toggle:checked:after{left:23px}.select{background:#0a151b;color:white;border:1px solid var(--line);border-radius:10px;padding:8px}
+.finishCard{position:relative;z-index:3;text-align:center;margin-top:28px;padding:26px 18px;border:1px solid var(--line);border-radius:26px;background:rgba(7,16,22,.62);backdrop-filter:blur(12px)}
+.finishCard h2{font-size:30px;margin:8px 0}.finishCard p{color:var(--muted);line-height:1.6}
+.finishStats{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:18px}.finishStats .metric{padding:14px 8px}
+.bg{position:fixed;inset:0;z-index:0;pointer-events:none;overflow:hidden;background:linear-gradient(160deg,#061015,#08161d 52%,#071017)}
+.bg:before,.bg:after{content:"";position:absolute;border-radius:50%;filter:blur(50px);mix-blend-mode:screen}
+.bg:before{width:65vw;height:65vw;max-width:560px;max-height:560px;background:rgba(42,238,186,.24);left:-20vw;top:12vh;animation:floatA 10s ease-in-out infinite alternate}
+.bg:after{width:55vw;height:55vw;max-width:520px;max-height:520px;background:rgba(43,133,255,.22);right:-18vw;top:35vh;animation:floatB 12s ease-in-out infinite alternate}
+.bgGrid{position:fixed;inset:-20%;z-index:1;pointer-events:none;opacity:.16;background:repeating-linear-gradient(118deg,transparent 0 44px,rgba(88,240,195,.18) 45px 46px,transparent 47px 92px);animation:scan 9s linear infinite}
+.bgPulse{position:fixed;left:50%;top:56%;width:78vmin;height:78vmin;border:1px solid rgba(88,240,195,.24);border-radius:50%;transform:translate(-50%,-50%);z-index:1;pointer-events:none;animation:pulse 3.3s ease-out infinite}
+.bgPulse.p2{animation-delay:1.65s}
+.aiBg .bg{background:radial-gradient(circle at 50% 10%,rgba(45,255,206,.12),transparent 22%),linear-gradient(160deg,#061015,#071321 54%,#0a0b1c)}
+.aiBg .bgGrid{opacity:.22;background:linear-gradient(90deg,transparent 49%,rgba(88,240,195,.12) 50%,transparent 51%),linear-gradient(0deg,transparent 49%,rgba(88,240,195,.10) 50%,transparent 51%);background-size:48px 48px;animation:gridMove 7s linear infinite}
+.noVisual .bg,.noVisual .bgGrid,.noVisual .bgPulse{display:none}
+@keyframes floatA{from{transform:translate3d(-4%,0,0) scale(1)}to{transform:translate3d(26%,14%,0) scale(1.18)}}@keyframes floatB{from{transform:translate3d(0,0,0) scale(1)}to{transform:translate3d(-24%,-16%,0) scale(1.16)}}@keyframes scan{from{transform:translateX(-10%)}to{transform:translateX(10%)}}@keyframes pulse{0%{opacity:.45;transform:translate(-50%,-50%) scale(.35)}100%{opacity:0;transform:translate(-50%,-50%) scale(1.2)}}@keyframes gridMove{from{transform:translateY(0)}to{transform:translateY(48px)}}
+@media(max-width:430px){.ring{width:200px;height:200px}.restRing{width:215px;height:215px}.ringNum{font-size:54px}.metric .v{font-size:19px}.title{font-size:27px}}
 </style>
 </head>
 <body>
-<div class="app">
-<section id="home" class="screen active">
-  <div class="top">
-    <div><div class="eyebrow">15 MINUTES. JUST START.</div><div class="title">15MIN AI<br>WORKOUT</div></div>
-    <button id="openSettings" class="gear" aria-label="設定">⚙︎</button>
-  </div>
-  <div class="hero">
-    <img class="logo" src="./icon.svg" alt="15MIN AI WORKOUT">
-    <h2>今日も15分だけ。</h2>
-    <p>前回の続きからおすすめします。別のDAYを選んで始めることもできます。</p>
-    <button id="quickStart" class="start">おすすめDAYをスタート</button>
-    <div id="recommendText" class="recommend"></div>
-  </div>
-  <div class="section">
-    <h3>DAYを選ぶ</h3>
-    <div id="dayChoices" class="days"></div>
-    <div class="hint">現在、内容が確定しているDAYのみ開始できます。</div>
-  </div>
-</section>
+<div class="app" id="app">
+  <div class="bg"></div><div class="bgGrid"></div><div class="bgPulse"></div><div class="bgPulse p2"></div>
 
-<section id="settings" class="screen">
-  <div class="top"><button class="back" data-back="home">‹</button><div><div class="eyebrow">SETTINGS</div><div class="title" style="font-size:26px">設定</div></div><div style="width:46px"></div></div>
-  <div class="card settings">
-    <label><span><b>音声ガイド</b><br><span class="mini muted">種目・重量・回数・次のセットを読み上げ</span></span><input id="voiceToggle" class="toggle" type="checkbox"></label>
-    <label><span><b>応援ボイス</b><br><span class="mini muted">「頑張りましょう」などの声かけ</span></span><input id="cheerToggle" class="toggle" type="checkbox"></label>
-    <label><span><b>BGM</b><br><span class="mini muted">トレーニング中に再生</span></span><input id="bgmToggle" class="toggle" type="checkbox"></label>
-    <label><span><b>BGM曲</b><br><span class="mini muted">アップロードした2曲から選択</span></span><select id="bgmTrack" style="background:#111b24;color:white;border:1px solid var(--line);border-radius:10px;padding:8px"><option value="142">RAGE 142 BPM</option><option value="118">FOCUS 118 BPM</option></select></label>
-    <label><span><b>BGM音量</b></span><input id="volume" class="range" type="range" min="0" max="100" value="38"></label>
-    <label><span><b>背景映像</b><br><span class="mini muted">トレ中・レスト中に動く背景</span></span><input id="visualToggle" class="toggle" type="checkbox"></label>
-    <label><span><b>背景スタイル</b></span><select id="visualStyle" style="background:#111b24;color:white;border:1px solid var(--line);border-radius:10px;padding:8px"><option value="dark">DARK NEON</option><option value="ai">AI FUTURE</option></select></label>
-  </div>
-  <button class="secondary" data-back="home">タイトルへ戻る</button>
-</section>
+  <section id="home" class="screen active">
+    <div class="top">
+      <div><div class="eyebrow">15 MINUTES. BETTER YOU.</div><div class="title">15MIN AI<br>WORKOUT</div></div>
+      <button id="openSettings" class="iconBtn">⚙︎</button>
+    </div>
+    <div class="hero">
+      <img class="logo" src="./icon.svg" alt="15MIN AI WORKOUT">
+      <h2>今日も、15分だけ。</h2>
+      <p>前回の続きからおすすめします。気分に合わせて別のDAYも選べます。</p>
+      <button id="quickStart" class="start">START</button>
+      <div id="recommendText" class="recommend"></div>
+      <div class="quickGrid">
+        <button id="programBtn" class="quickBtn">プログラム</button>
+        <button id="settingsBtn" class="quickBtn">設定</button>
+        <button id="recordBtn" class="quickBtn">記録</button>
+      </div>
+    </div>
+    <div class="section">
+      <h3>DAYを選ぶ</h3>
+      <div id="dayChoices" class="days"></div>
+    </div>
+  </section>
 
-<section id="prepare" class="screen">
-  <div class="top"><button class="back" data-back="home">‹</button><div><div class="eyebrow">READY</div><div id="prepareTitle" class="title" style="font-size:26px"></div></div><div class="statusPill">15分固定</div></div>
-  <div id="prepareList"></div>
-  <button id="beginWorkout" class="start">このDAYを開始</button>
-</section>
+  <section id="settings" class="screen">
+    <div class="top"><button class="iconBtn" data-back="home">‹</button><div><div class="eyebrow">SETTINGS</div><div class="title" style="font-size:26px">設定</div></div><div style="width:46px"></div></div>
+    <div class="card settings">
+      <label><span><b>音声ガイド</b><br><span class="mini muted">種目・重量・回数を読み上げ</span></span><input id="voiceToggle" class="toggle" type="checkbox"></label>
+      <label><span><b>応援ボイス</b><br><span class="mini muted">頑張れ・いいペース等</span></span><input id="cheerToggle" class="toggle" type="checkbox"></label>
+      <label><span><b>BGM</b><br><span class="mini muted">トレ中に再生</span></span><input id="bgmToggle" class="toggle" type="checkbox"></label>
+      <label><span><b>BGM曲</b></span><select id="bgmTrack" class="select"><option value="142">RAGE 142 BPM</option><option value="118">FOCUS 118 BPM</option></select></label>
+      <label><span><b>BGM音量</b></span><input id="volume" type="range" min="0" max="100" value="38"></label>
+      <label><span><b>背景映像</b><br><span class="mini muted">動く背景を表示</span></span><input id="visualToggle" class="toggle" type="checkbox"></label>
+      <label><span><b>背景スタイル</b></span><select id="visualStyle" class="select"><option value="dark">DARK NEON</option><option value="ai">AI FUTURE</option></select></label>
+      <label><span><b>低負荷モード</b><br><span class="mini muted">背景アニメーションを停止</span></span><input id="lowPowerToggle" class="toggle" type="checkbox"></label>
+    </div>
+  </section>
 
-<section id="workout" class="screen visual"><div class="ambient"><span class="orb o1"></span><span class="orb o2"></span><span class="orb o3"></span><span class="gridfx"></span><span class="pulse"></span><span class="pulse p2"></span></div>
-  <div class="top">
-    <div><div class="eyebrow">WORKOUT</div><div id="workoutDay" class="title" style="font-size:24px"></div></div>
-    <div class="statusPill"><span id="mainTime">15:00</span></div>
-  </div>
-  <div class="exerciseBox">
-    <div class="mini muted">現在の種目</div>
-    <div id="exerciseName" class="exerciseName"></div>
-    <div id="exerciseSpec" class="spec"></div>
-    <div id="setProgress" class="progress"></div>
-    <button id="setComplete" class="complete">このセット完了</button>
-  </div>
-  <div class="card">
-    <div class="row"><span class="muted mini">次</span><b id="upNext"></b></div>
-  </div>
-  <button id="quitWorkout" class="secondary">トレーニングを終了</button>
-</section>
+  <section id="prepare" class="screen">
+    <div class="top"><button class="iconBtn" data-back="home">‹</button><div><div class="eyebrow">PROGRAM</div><div id="prepareTitle" class="title" style="font-size:26px"></div></div><div class="pill">15分固定</div></div>
+    <div id="prepareList" class="prepareList"></div>
+    <button id="beginWorkout" class="start">このDAYを開始</button>
+  </section>
 
-<section id="rest" class="screen visual"><div class="ambient"><span class="orb o1"></span><span class="orb o2"></span><span class="orb o3"></span><span class="gridfx"></span><span class="pulse"></span><span class="pulse p2"></span></div>
-  <div class="top"><div><div class="eyebrow">REST</div><div class="title" style="font-size:24px">しっかり休む</div></div><div class="statusPill"><span id="mainTimeRest">15:00</span></div></div>
-  <div class="card restBox">
-    <div class="restLabel">レスト</div>
-    <div id="restTime" class="restTime">60</div>
-    <div class="bar"><div id="restBar"></div></div>
-    <div id="restNext" class="nextText"></div>
-  </div>
-  <button id="skipRest" class="secondary">レストをスキップ</button>
-</section>
+  <section id="workout" class="screen">
+    <div class="top"><div><div class="eyebrow">WORKOUT</div><div id="workoutDay" class="title" style="font-size:25px"></div></div><div class="pill" id="mainTime">15:00</div></div>
+    <div class="workHero">
+      <div class="muted mini">現在の種目</div>
+      <div id="exerciseName" class="exerciseName"></div>
+      <div id="exerciseMuscle" class="muscle"></div>
+      <div id="setRing" class="ring">
+        <div class="ringInner"><div id="ringSet" class="ringSet"></div><div id="ringNum" class="ringNum"></div><div id="ringUnit" class="ringUnit"></div></div>
+      </div>
+      <div class="metricGrid">
+        <div class="metric"><div id="metricWeight" class="v"></div><div class="l">重量</div></div>
+        <div class="metric"><div id="metricNext" class="v"></div><div class="l">次セットまで</div></div>
+        <div class="metric"><div id="metricExercise" class="v"></div><div class="l">種目</div></div>
+      </div>
+      <button id="setComplete" class="complete">このセット完了</button>
+    </div>
+    <div class="card"><div class="row"><span class="muted mini">次</span><b id="upNext"></b></div></div>
+    <button id="quitWorkout" class="secondary">トレーニングを終了</button>
+  </section>
 
-<section id="finish" class="screen">
-  <div class="top"><button class="back" data-back="home">‹</button><div></div><div style="width:46px"></div></div>
-  <div class="finish">
-    <img class="logo" src="./icon.svg" alt="">
-    <h2>今日の15分、完了。</h2>
-    <p id="finishText"></p>
-    <button id="finishHome" class="start">タイトルへ</button>
-  </div>
-</section>
+  <section id="rest" class="screen">
+    <div class="top"><div><div class="eyebrow">REST</div><div class="title" style="font-size:25px">休憩中</div></div><div class="pill" id="mainTimeRest">15:00</div></div>
+    <div class="restCard">
+      <div class="muted">次のセットに備えましょう</div>
+      <div id="restRing" class="restRing"><div id="restTime" class="restTime">60</div></div>
+      <div id="restNext" class="restNext"></div>
+      <div class="restActions">
+        <button id="pauseRest" class="secondary">一時停止</button>
+        <button id="skipRest" class="secondary">スキップ</button>
+      </div>
+    </div>
+  </section>
+
+  <section id="finish" class="screen">
+    <div class="finishCard">
+      <img class="logo" src="./icon.svg" alt="">
+      <h2>お疲れさまでした！</h2>
+      <p>今日も一歩、理想の自分に近づきました。</p>
+      <div class="finishStats">
+        <div class="metric"><div class="v">15:00</div><div class="l">トレ時間</div></div>
+        <div class="metric"><div id="finishSets" class="v">0</div><div class="l">完了セット</div></div>
+        <div class="metric"><div id="finishNext" class="v">DAY</div><div class="l">次回おすすめ</div></div>
+      </div>
+      <button id="repeatDay" class="start">もう一度やる</button>
+      <button id="finishHome" class="secondary">ホームに戻る</button>
+    </div>
+  </section>
 </div>
+
 <audio id="bgmAudio" loop playsinline preload="metadata"></audio>
 <script>
-const W=[4,5.5,7,8.5,10,11.5,13,14.5,16,17.5,19,20.5,22,23.5,25,26.5,28,29.5,31,32.5,34,35.5,37,38.5,40,41.5];
 const BASE={
 1:{t:'DAY1',s:'メニュー未設定',e:[]},
 2:{t:'DAY2｜背中＋二頭',s:'背中と腕を鍛える日',e:[
-{id:'row',n:'ワンハンドロー',w:10,r:'左右12回',sets:3,voice:'左右12回'},
-{id:'rf',n:'リバースフライ',w:4,r:'15回',sets:3,voice:'15回'},
-{id:'curl',n:'ダンベルカール',w:7,r:'12回',sets:3,voice:'12回'}]},
+{id:'row',n:'ワンハンドロー',w:10,r:'左右12回',sets:3,m:'背中・二頭',voice:'左右12回'},
+{id:'rf',n:'リバースフライ',w:4,r:'15回',sets:3,m:'背中・肩後部',voice:'15回'},
+{id:'curl',n:'ダンベルカール',w:7,r:'12回',sets:3,m:'二頭',voice:'12回'}]},
 3:{t:'DAY3｜脚',s:'下半身を鍛える日',e:[
-{id:'sq',n:'ダンベルスクワット',w:10,r:'12回',sets:3,two:true,voice:'12回'},
-{id:'bg',n:'ブルガリアンスクワット',w:8.5,r:'左右10回',sets:3,two:true,voice:'左右10回'},
-{id:'rdl',n:'ルーマニアンデッドリフト',w:10,r:'12回',sets:2,two:true,voice:'12回'}]},
+{id:'sq',n:'ダンベルスクワット',w:10,r:'12回',sets:3,m:'脚・臀部',two:true,voice:'12回'},
+{id:'bg',n:'ブルガリアンスクワット',w:8.5,r:'左右10回',sets:3,m:'脚・臀部',two:true,voice:'左右10回'},
+{id:'rdl',n:'ルーマニアンデッドリフト',w:10,r:'12回',sets:2,m:'ハム・臀部',two:true,voice:'12回'}]},
 4:{t:'DAY4',s:'メニュー未設定',e:[]},
 5:{t:'DAY5',s:'メニュー未設定',e:[]}
 };
 const state={
-plan:JSON.parse(localStorage.getItem('plan')||'null')||JSON.parse(JSON.stringify(BASE)),
-lastDay:+(localStorage.getItem('lastCompletedDay')||0),
-selectedDay:2,exerciseIndex:0,setIndex:1,
-mainSec:900,mainTimer:null,restTimer:null,restSec:60,
-ctx:null,master:null,bgmTimer:null,bgmStep:0,
-settings:{
-voice:localStorage.getItem('voiceOn')!=='off',
-cheer:localStorage.getItem('cheerOn')!=='off',
-bgm:localStorage.getItem('bgmOn')!=='off',
-volume:+(localStorage.getItem('bgmVolume')||38),
-track:localStorage.getItem('bgmTrack')||'142',
-visual:localStorage.getItem('visualOn')!=='off',
-visualStyle:localStorage.getItem('visualStyle')||'dark'
-}
+ plan:JSON.parse(localStorage.getItem('plan')||'null')||JSON.parse(JSON.stringify(BASE)),
+ lastDay:+(localStorage.getItem('lastCompletedDay')||0),selectedDay:2,exerciseIndex:0,setIndex:1,
+ mainSec:900,mainTimer:null,restTimer:null,restSec:60,restPaused:false,completedSets:0,
+ settings:{
+  voice:localStorage.getItem('voiceOn')!=='off',
+  cheer:localStorage.getItem('cheerOn')!=='off',
+  bgm:localStorage.getItem('bgmOn')!=='off',
+  volume:+(localStorage.getItem('bgmVolume')||38),
+  track:localStorage.getItem('bgmTrack')||'142',
+  visual:localStorage.getItem('visualOn')!=='off',
+  style:localStorage.getItem('visualStyle')||'dark',
+  lowPower:localStorage.getItem('lowPower')==='on'
+ }
 };
-const q=s=>document.querySelector(s), qa=s=>[...document.querySelectorAll(s)];
-function applyVisuals(){['workout','rest'].forEach(id=>{const el=q('#'+id);el.classList.toggle('noVisual',!state.settings.visual);el.classList.toggle('ai',state.settings.visualStyle==='ai')})}function show(id){applyVisuals();qa('.screen').forEach(x=>x.classList.toggle('active',x.id===id));}
-function saveSettings(){localStorage.setItem('voiceOn',state.settings.voice?'on':'off');localStorage.setItem('cheerOn',state.settings.cheer?'on':'off');localStorage.setItem('bgmOn',state.settings.bgm?'on':'off');localStorage.setItem('bgmVolume',state.settings.volume);localStorage.setItem('bgmTrack',state.settings.track);localStorage.setItem('visualOn',state.settings.visual?'on':'off');localStorage.setItem('visualStyle',state.settings.visualStyle);}
-function configuredDays(){return [1,2,3,4,5].filter(d=>state.plan[d].e.length)}
-function recommendedDay(){
- const all=[1,2,3,4,5], start=state.lastDay?state.lastDay%5+1:configuredDays()[0]||1;
- for(let i=0;i<5;i++){const d=((start-1+i)%5)+1;if(state.plan[d].e.length)return d}
- return 1;
-}
-function renderHome(){
- const rec=recommendedDay(); state.selectedDay=rec;
- q('#recommendText').textContent=state.plan[rec].e.length?'おすすめ：'+state.plan[rec].t:'メニュー設定待ち';
- q('#quickStart').disabled=!state.plan[rec].e.length;
- q('#dayChoices').innerHTML=[1,2,3,4,5].map(d=>'<button class="day '+(d===rec?'recommended ':'')+(!state.plan[d].e.length?'disabled':'')+'" data-day="'+d+'">DAY'+d+'</button>').join('');
- qa('.day').forEach(b=>b.addEventListener('click',()=>{const d=+b.dataset.day;if(!state.plan[d].e.length){alert('DAY'+d+'はまだメニュー未設定です。');return}openPrepare(d)}));
-}
-function openPrepare(day){
- state.selectedDay=day; const d=state.plan[day];
- q('#prepareTitle').textContent=d.t;
- q('#prepareList').innerHTML=d.e.map((e,i)=>'<div class="card"><div class="row"><div><b>'+(i+1)+'. '+e.n+'</b><div class="mini muted" style="margin-top:5px">'+e.w+'kg'+(e.two?' × 2':'')+' ／ '+e.r+' ／ '+e.sets+'セット</div></div><span class="statusPill">'+e.sets+' SET</span></div></div>').join('');
- show('prepare');
-}
-function speak(text){
- if(!state.settings.voice||!('speechSynthesis'in window))return;
- speechSynthesis.cancel(); const u=new SpeechSynthesisUtterance(text);u.lang='ja-JP';u.rate=.98;u.pitch=1; speechSynthesis.speak(u);
-}
-function cheer(){
- if(!state.settings.cheer)return;
- const phrases=['頑張りましょう。','いいペースです。','フォームを意識していきましょう。','あと少しです。'];
- speak(phrases[(state.exerciseIndex+state.setIndex)%phrases.length]);
-}
-function announceCurrent(){
- const d=state.plan[state.selectedDay],e=d.e[state.exerciseIndex];
- let t=e.n+'。'+e.w+'キロ'+(e.two?'を両手に持って。':'。')+e.voice+'。'+state.setIndex+'セット目。';
- if(state.settings.cheer)t+=' '+['頑張りましょう。','いいペースです。','落ち着いていきましょう。'][(state.exerciseIndex+state.setIndex)%3];
- speak(t);
-}
-function renderWorkout(){
- const d=state.plan[state.selectedDay],e=d.e[state.exerciseIndex];
- q('#workoutDay').textContent=d.t;q('#exerciseName').textContent=e.n;
- q('#exerciseSpec').textContent=e.w+'kg'+(e.two?' × 2':'')+' ／ '+e.r+' ／ '+state.setIndex+' / '+e.sets+'セット';
- q('#setProgress').innerHTML=Array.from({length:e.sets},(_,i)=>'<div class="dot '+(i<state.setIndex?'on':'')+'"></div>').join('');
- const next=peekNext();
- q('#upNext').textContent=next||'このDAY完了';
-}
-function peekNext(){
- const d=state.plan[state.selectedDay],e=d.e[state.exerciseIndex];
- if(state.setIndex<e.sets)return e.n+' '+(state.setIndex+1)+'セット目';
- if(state.exerciseIndex<d.e.length-1)return d.e[state.exerciseIndex+1].n+' 1セット目';
- return '';
-}
-function startWorkout(){
- state.exerciseIndex=0;state.setIndex=1;state.mainSec=900;
- q('#mainTime').textContent='15:00';q('#mainTimeRest').textContent='15:00';
- clearInterval(state.mainTimer);state.mainTimer=setInterval(()=>{state.mainSec=Math.max(0,state.mainSec-1);const t=String(Math.floor(state.mainSec/60)).padStart(2,'0')+':'+String(state.mainSec%60).padStart(2,'0');q('#mainTime').textContent=t;q('#mainTimeRest').textContent=t;if(state.mainSec===0){clearInterval(state.mainTimer);finishWorkout(true)}},1000);
- if(state.settings.bgm)startBgm();
- renderWorkout();show('workout');announceCurrent();
-}
-function completeSet(){
- const d=state.plan[state.selectedDay],e=d.e[state.exerciseIndex];
- const log=JSON.parse(localStorage.getItem('logs')||'[]');log.push({ts:Date.now(),day:state.selectedDay,exercise:e.n,kg:e.w,reps:e.r,set:state.setIndex});localStorage.setItem('logs',JSON.stringify(log));
- if(state.setIndex<e.sets)state.setIndex++;
- else if(state.exerciseIndex<d.e.length-1){state.exerciseIndex++;state.setIndex=1}
- else {finishWorkout(false);return}
- startRest();
-}
-function startRest(){
- clearInterval(state.restTimer);state.restSec=60;q('#restTime').textContent='60';q('#restBar').style.width='100%';q('#restNext').textContent='次：'+(peekCurrentLabel());
- show('rest');speak('セット終了。60秒休憩です。');
- state.restTimer=setInterval(()=>{state.restSec--;q('#restTime').textContent=state.restSec;q('#restBar').style.width=(state.restSec/60*100)+'%';if(state.restSec===10)speak('あと10秒です。');if(state.restSec<=0){clearInterval(state.restTimer);resumeAfterRest()}},1000);
-}
-function peekCurrentLabel(){const d=state.plan[state.selectedDay],e=d.e[state.exerciseIndex];return e.n+' '+state.setIndex+'セット目'}
-function resumeAfterRest(){show('workout');renderWorkout();speak('レスト終了。次のセットです。');setTimeout(announceCurrent,1200)}
-function finishWorkout(timeup){
- clearInterval(state.mainTimer);clearInterval(state.restTimer);stopBgm();speechSynthesis&&speechSynthesis.cancel();
- state.lastDay=state.selectedDay;localStorage.setItem('lastCompletedDay',String(state.lastDay));
- const next=((state.selectedDay)%5)+1;
- q('#finishText').textContent=(timeup?'15分が終了しました。':'全セット完了です。')+' 次回はDAY'+next+'をおすすめします。';
- show('finish');
- if(state.settings.voice){setTimeout(()=>speak('お疲れさまでした。今日のトレーニングは終了です。'),250)}
-}
-function startBgm(){if(!state.settings.bgm)return;const a=q('#bgmAudio');a.src=state.settings.track==='118'?'./249_long_BPM118.mp3':'./126_long_BPM142.mp3';a.volume=Math.max(0,Math.min(1,state.settings.volume/100));a.play().catch(()=>{})}function stopBgm(){const a=q('#bgmAudio');a.pause();a.currentTime=0}
-q('#openSettings').onclick=()=>show('settings');
+const q=s=>document.querySelector(s),qa=s=>[...document.querySelectorAll(s)];
+function saveSettings(){localStorage.setItem('voiceOn',state.settings.voice?'on':'off');localStorage.setItem('cheerOn',state.settings.cheer?'on':'off');localStorage.setItem('bgmOn',state.settings.bgm?'on':'off');localStorage.setItem('bgmVolume',state.settings.volume);localStorage.setItem('bgmTrack',state.settings.track);localStorage.setItem('visualOn',state.settings.visual?'on':'off');localStorage.setItem('visualStyle',state.settings.style);localStorage.setItem('lowPower',state.settings.lowPower?'on':'off')}
+function applyVisual(){q('#app').classList.toggle('aiBg',state.settings.style==='ai');q('#app').classList.toggle('noVisual',!state.settings.visual||state.settings.lowPower)}
+function show(id){applyVisual();qa('.screen').forEach(x=>x.classList.toggle('active',x.id===id))}
+function configured(){return [1,2,3,4,5].filter(d=>state.plan[d].e.length)}
+function recommendedDay(){const start=state.lastDay?state.lastDay%5+1:(configured()[0]||1);for(let i=0;i<5;i++){const d=((start-1+i)%5)+1;if(state.plan[d].e.length)return d}return 1}
+function renderHome(){const rec=recommendedDay();state.selectedDay=rec;q('#recommendText').textContent='おすすめ：'+state.plan[rec].t;q('#dayChoices').innerHTML=[1,2,3,4,5].map(d=>'<button class="day '+(d===rec?'recommended ':'')+(!state.plan[d].e.length?'disabled':'')+'" data-day="'+d+'">DAY'+d+'</button>').join('');qa('.day').forEach(b=>b.onclick=()=>{const d=+b.dataset.day;if(!state.plan[d].e.length){alert('DAY'+d+'はまだ未設定です。');return}openPrepare(d)})}
+function openPrepare(day){state.selectedDay=day;const d=state.plan[day];q('#prepareTitle').textContent=d.t;q('#prepareList').innerHTML=d.e.map((e,i)=>'<div class="card"><div class="row"><div><b>'+(i+1)+'. '+e.n+'</b><div class="mini muted" style="margin-top:5px">'+e.w+'kg'+(e.two?' × 2':'')+' ／ '+e.r+' ／ '+e.sets+'セット</div></div><span class="pill">'+e.m+'</span></div></div>').join('');show('prepare')}
+function speak(text){if(!state.settings.voice||!('speechSynthesis'in window))return;speechSynthesis.cancel();const u=new SpeechSynthesisUtterance(text);u.lang='ja-JP';u.rate=.98;speechSynthesis.speak(u)}
+function announce(){const e=state.plan[state.selectedDay].e[state.exerciseIndex];let t=e.n+'。'+e.w+'キロ'+(e.two?'を両手に。':'。')+e.voice+'。'+state.setIndex+'セット目。';if(state.settings.cheer)t+=['頑張りましょう。','いいペースです。','フォームを意識していきましょう。'][(state.exerciseIndex+state.setIndex)%3];speak(t)}
+function updateMain(){const t=String(Math.floor(state.mainSec/60)).padStart(2,'0')+':'+String(state.mainSec%60).padStart(2,'0');q('#mainTime').textContent=t;q('#mainTimeRest').textContent=t}
+function renderWorkout(){const d=state.plan[state.selectedDay],e=d.e[state.exerciseIndex];q('#workoutDay').textContent=d.t;q('#exerciseName').textContent=e.n;q('#exerciseMuscle').textContent=e.m;q('#ringSet').textContent=state.setIndex+' / '+e.sets+' SET';q('#ringNum').textContent=e.voice.replace(/[^0-9]/g,'')||'12';q('#ringUnit').textContent=e.r.includes('左右')?'左右回':'回';q('#metricWeight').textContent=e.w+'kg';q('#metricNext').textContent='60秒';q('#metricExercise').textContent=(state.exerciseIndex+1)+'/'+d.e.length;q('#upNext').textContent=peekNext()||'このDAY完了';q('#setRing').style.background='conic-gradient(var(--accent) 0 '+Math.round(state.setIndex/e.sets*100)+'%,rgba(255,255,255,.12) '+Math.round(state.setIndex/e.sets*100)+'% 100%)'}
+function peekNext(){const d=state.plan[state.selectedDay],e=d.e[state.exerciseIndex];if(state.setIndex<e.sets)return e.n+' '+(state.setIndex+1)+'セット目';if(state.exerciseIndex<d.e.length-1)return d.e[state.exerciseIndex+1].n+' 1セット目';return ''}
+function startWorkout(){state.exerciseIndex=0;state.setIndex=1;state.completedSets=0;state.mainSec=900;updateMain();clearInterval(state.mainTimer);state.mainTimer=setInterval(()=>{state.mainSec=Math.max(0,state.mainSec-1);updateMain();if(state.mainSec===0){clearInterval(state.mainTimer);finishWorkout(true)}},1000);if(state.settings.bgm)startBgm();renderWorkout();show('workout');announce()}
+function completeSet(){const d=state.plan[state.selectedDay],e=d.e[state.exerciseIndex];const logs=JSON.parse(localStorage.getItem('logs')||'[]');logs.push({ts:Date.now(),day:state.selectedDay,exercise:e.n,kg:e.w,reps:e.r,set:state.setIndex});localStorage.setItem('logs',JSON.stringify(logs));state.completedSets++;if(state.setIndex<e.sets)state.setIndex++;else if(state.exerciseIndex<d.e.length-1){state.exerciseIndex++;state.setIndex=1}else{finishWorkout(false);return}startRest()}
+function startRest(){clearInterval(state.restTimer);state.restPaused=false;state.restSec=60;q('#restTime').textContent='60';q('#restNext').textContent='次：'+currentLabel();q('#restRing').style.background='conic-gradient(var(--accent) 0 100%,rgba(255,255,255,.12) 100% 100%)';show('rest');speak('セット終了。60秒休憩です。');state.restTimer=setInterval(tickRest,1000)}
+function tickRest(){if(state.restPaused)return;state.restSec--;q('#restTime').textContent=state.restSec;q('#restRing').style.background='conic-gradient(var(--accent) 0 '+(state.restSec/60*100)+'%,rgba(255,255,255,.12) '+(state.restSec/60*100)+'% 100%)';if(state.restSec===10)speak('あと10秒です。');if(state.restSec<=0){clearInterval(state.restTimer);resumeAfterRest()}}
+function currentLabel(){const e=state.plan[state.selectedDay].e[state.exerciseIndex];return e.n+' '+state.setIndex+'セット目'}
+function resumeAfterRest(){show('workout');renderWorkout();speak('レスト終了。次のセットです。');setTimeout(announce,1200)}
+function finishWorkout(timeup){clearInterval(state.mainTimer);clearInterval(state.restTimer);stopBgm();if('speechSynthesis'in window)speechSynthesis.cancel();state.lastDay=state.selectedDay;localStorage.setItem('lastCompletedDay',String(state.lastDay));const next=recommendedAfter(state.selectedDay);q('#finishSets').textContent=state.completedSets;q('#finishNext').textContent='DAY'+next;show('finish');if(state.settings.voice)setTimeout(()=>speak('お疲れさまでした。今日のトレーニングは終了です。'),250)}
+function recommendedAfter(day){for(let i=1;i<=5;i++){const d=((day-1+i)%5)+1;if(state.plan[d].e.length)return d}return day}
+function startBgm(){if(!state.settings.bgm)return;const a=q('#bgmAudio');a.src=state.settings.track==='118'?'./249_long_BPM118.mp3':'./126_long_BPM142.mp3';a.volume=Math.max(0,Math.min(1,state.settings.volume/100));a.play().catch(()=>{})}
+function stopBgm(){const a=q('#bgmAudio');a.pause();a.currentTime=0}
+q('#openSettings').onclick=()=>show('settings');q('#settingsBtn').onclick=()=>show('settings');q('#programBtn').onclick=()=>openPrepare(recommendedDay());q('#recordBtn').onclick=()=>alert('記録画面は次の改修で追加できます。');
 qa('[data-back]').forEach(b=>b.onclick=()=>{renderHome();show(b.dataset.back)});
-q('#quickStart').onclick=()=>openPrepare(recommendedDay());
-q('#beginWorkout').onclick=startWorkout;
-q('#setComplete').onclick=completeSet;
-q('#skipRest').onclick=()=>{clearInterval(state.restTimer);resumeAfterRest()};
+q('#quickStart').onclick=()=>openPrepare(recommendedDay());q('#beginWorkout').onclick=startWorkout;q('#setComplete').onclick=completeSet;
+q('#skipRest').onclick=()=>{clearInterval(state.restTimer);resumeAfterRest()};q('#pauseRest').onclick=()=>{state.restPaused=!state.restPaused;q('#pauseRest').textContent=state.restPaused?'再開':'一時停止'};
 q('#quitWorkout').onclick=()=>{if(confirm('トレーニングを終了しますか？')){clearInterval(state.mainTimer);clearInterval(state.restTimer);stopBgm();renderHome();show('home')}};
-q('#finishHome').onclick=()=>{renderHome();show('home')};
-q('#voiceToggle').checked=state.settings.voice;q('#cheerToggle').checked=state.settings.cheer;q('#bgmToggle').checked=state.settings.bgm;q('#volume').value=state.settings.volume;q('#bgmTrack').value=state.settings.track;q('#visualToggle').checked=state.settings.visual;q('#visualStyle').value=state.settings.visualStyle;
-q('#voiceToggle').onchange=e=>{state.settings.voice=e.target.checked;saveSettings()};
-q('#cheerToggle').onchange=e=>{state.settings.cheer=e.target.checked;saveSettings()};
-q('#bgmToggle').onchange=e=>{state.settings.bgm=e.target.checked;saveSettings();if(!state.settings.bgm)stopBgm()};
-q('#bgmTrack').onchange=e=>{state.settings.track=e.target.value;saveSettings();if(!q('#bgmAudio').paused)startBgm()};
-q('#volume').oninput=e=>{state.settings.volume=+e.target.value;saveSettings();q('#bgmAudio').volume=state.settings.volume/100};
-q('#visualToggle').onchange=e=>{state.settings.visual=e.target.checked;saveSettings();applyVisuals()};
-q('#visualStyle').onchange=e=>{state.settings.visualStyle=e.target.value;saveSettings();applyVisuals()};
-if('serviceWorker'in navigator)navigator.serviceWorker.register('./sw.js');
-renderHome();
+q('#finishHome').onclick=()=>{renderHome();show('home')};q('#repeatDay').onclick=()=>openPrepare(state.selectedDay);
+q('#voiceToggle').checked=state.settings.voice;q('#cheerToggle').checked=state.settings.cheer;q('#bgmToggle').checked=state.settings.bgm;q('#volume').value=state.settings.volume;q('#bgmTrack').value=state.settings.track;q('#visualToggle').checked=state.settings.visual;q('#visualStyle').value=state.settings.style;q('#lowPowerToggle').checked=state.settings.lowPower;
+q('#voiceToggle').onchange=e=>{state.settings.voice=e.target.checked;saveSettings()};q('#cheerToggle').onchange=e=>{state.settings.cheer=e.target.checked;saveSettings()};q('#bgmToggle').onchange=e=>{state.settings.bgm=e.target.checked;saveSettings();if(!state.settings.bgm)stopBgm()};q('#bgmTrack').onchange=e=>{state.settings.track=e.target.value;saveSettings();if(!q('#bgmAudio').paused)startBgm()};q('#volume').oninput=e=>{state.settings.volume=+e.target.value;saveSettings();q('#bgmAudio').volume=state.settings.volume/100};q('#visualToggle').onchange=e=>{state.settings.visual=e.target.checked;saveSettings();applyVisual()};q('#visualStyle').onchange=e=>{state.settings.style=e.target.value;saveSettings();applyVisual()};q('#lowPowerToggle').onchange=e=>{state.settings.lowPower=e.target.checked;saveSettings();applyVisual()};
+applyVisual();renderHome();if('serviceWorker'in navigator)navigator.serviceWorker.register('./sw.js');
 </script>
 </body>
 </html>
