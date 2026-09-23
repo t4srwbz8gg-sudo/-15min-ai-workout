@@ -20,6 +20,14 @@
 *{box-sizing:border-box}html,body{margin:0;min-height:100%;background:#061015;color:var(--text);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}
 button,input,select{font:inherit}button{cursor:pointer}
 .app{max-width:720px;margin:auto;min-height:100vh;padding:calc(18px + env(safe-area-inset-top)) 16px calc(24px + env(safe-area-inset-bottom));position:relative;overflow:hidden}
+.videoBg{position:fixed;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 64%;z-index:0;opacity:0;transform:scale(1.07);filter:saturate(.8) contrast(1.08) brightness(.48) hue-rotate(145deg);transition:opacity .35s ease;pointer-events:none}
+.videoMode .videoBg{opacity:.78}
+.videoShade{position:fixed;inset:0;z-index:1;pointer-events:none;opacity:0;transition:opacity .35s ease;background:linear-gradient(180deg,rgba(3,10,14,.98) 0%,rgba(3,10,14,.88) 18%,rgba(3,10,14,.36) 42%,rgba(3,10,14,.46) 72%,rgba(3,10,14,.92) 100%)}
+.videoMode .videoShade{opacity:1}
+.faceShield{position:fixed;left:0;right:0;top:0;height:38vh;z-index:2;pointer-events:none;opacity:0;transition:opacity .35s ease;backdrop-filter:blur(15px) brightness(.48);-webkit-backdrop-filter:blur(15px) brightness(.48);mask-image:linear-gradient(to bottom,#000 0 54%,transparent 100%);-webkit-mask-image:linear-gradient(to bottom,#000 0 54%,transparent 100%)}
+.videoMode .faceShield{opacity:1}
+.videoMode .bg{opacity:.14}.videoMode .bgGrid{opacity:.08}.videoMode .bgPulse{opacity:.12}
+.noVisual .videoBg,.noVisual .videoShade,.noVisual .faceShield{display:none}
 .screen{display:none;position:relative;min-height:calc(100vh - 60px)}.screen.active{display:block}
 .top{display:flex;align-items:center;justify-content:space-between;gap:12px;position:relative;z-index:5}
 .eyebrow{font-size:11px;letter-spacing:.22em;font-weight:900;color:#b7c8cf}.title{font-size:30px;font-weight:950;line-height:1.02;margin-top:5px}
@@ -68,6 +76,9 @@ button,input,select{font:inherit}button{cursor:pointer}
 </head>
 <body>
 <div class="app" id="app">
+  <video id="workoutVideo" class="videoBg" src="./15345685_2160_3840_25fps.mp4" muted loop playsinline preload="metadata"></video>
+  <div class="videoShade"></div>
+  <div class="faceShield"></div>
   <div class="bg"></div><div class="bgGrid"></div><div class="bgPulse"></div><div class="bgPulse p2"></div>
 
   <section id="home" class="screen active">
@@ -195,7 +206,12 @@ const state={
 const q=s=>document.querySelector(s),qa=s=>[...document.querySelectorAll(s)];
 function saveSettings(){localStorage.setItem('voiceOn',state.settings.voice?'on':'off');localStorage.setItem('cheerOn',state.settings.cheer?'on':'off');localStorage.setItem('bgmOn',state.settings.bgm?'on':'off');localStorage.setItem('bgmVolume',state.settings.volume);localStorage.setItem('bgmTrack',state.settings.track);localStorage.setItem('visualOn',state.settings.visual?'on':'off');localStorage.setItem('visualStyle',state.settings.style);localStorage.setItem('lowPower',state.settings.lowPower?'on':'off')}
 function applyVisual(){q('#app').classList.toggle('aiBg',state.settings.style==='ai');q('#app').classList.toggle('noVisual',!state.settings.visual||state.settings.lowPower)}
-function show(id){applyVisual();qa('.screen').forEach(x=>x.classList.toggle('active',x.id===id))}
+function syncVideo(id){
+ const v=q('#workoutVideo'),on=(id==='workout'||id==='rest')&&state.settings.visual&&!state.settings.lowPower;
+ q('#app').classList.toggle('videoMode',on);
+ if(on){v.play().catch(()=>{})}else{v.pause()}
+}
+function show(id){applyVisual();qa('.screen').forEach(x=>x.classList.toggle('active',x.id===id));syncVideo(id)}
 function configured(){return [1,2,3,4,5].filter(d=>state.plan[d].e.length)}
 function recommendedDay(){const start=state.lastDay?state.lastDay%5+1:(configured()[0]||1);for(let i=0;i<5;i++){const d=((start-1+i)%5)+1;if(state.plan[d].e.length)return d}return 1}
 function renderHome(){const rec=recommendedDay();state.selectedDay=rec;q('#recommendText').textContent='おすすめ：'+state.plan[rec].t;q('#dayChoices').innerHTML=[1,2,3,4,5].map(d=>'<button class="day '+(d===rec?'recommended ':'')+(!state.plan[d].e.length?'disabled':'')+'" data-day="'+d+'">DAY'+d+'</button>').join('');qa('.day').forEach(b=>b.onclick=()=>{const d=+b.dataset.day;if(!state.plan[d].e.length){alert('DAY'+d+'はまだ未設定です。');return}openPrepare(d)})}
@@ -222,7 +238,7 @@ q('#skipRest').onclick=()=>{clearInterval(state.restTimer);resumeAfterRest()};q(
 q('#quitWorkout').onclick=()=>{if(confirm('トレーニングを終了しますか？')){clearInterval(state.mainTimer);clearInterval(state.restTimer);stopBgm();renderHome();show('home')}};
 q('#finishHome').onclick=()=>{renderHome();show('home')};q('#repeatDay').onclick=()=>openPrepare(state.selectedDay);
 q('#voiceToggle').checked=state.settings.voice;q('#cheerToggle').checked=state.settings.cheer;q('#bgmToggle').checked=state.settings.bgm;q('#volume').value=state.settings.volume;q('#bgmTrack').value=state.settings.track;q('#visualToggle').checked=state.settings.visual;q('#visualStyle').value=state.settings.style;q('#lowPowerToggle').checked=state.settings.lowPower;
-q('#voiceToggle').onchange=e=>{state.settings.voice=e.target.checked;saveSettings()};q('#cheerToggle').onchange=e=>{state.settings.cheer=e.target.checked;saveSettings()};q('#bgmToggle').onchange=e=>{state.settings.bgm=e.target.checked;saveSettings();if(!state.settings.bgm)stopBgm()};q('#bgmTrack').onchange=e=>{state.settings.track=e.target.value;saveSettings();if(!q('#bgmAudio').paused)startBgm()};q('#volume').oninput=e=>{state.settings.volume=+e.target.value;saveSettings();q('#bgmAudio').volume=state.settings.volume/100};q('#visualToggle').onchange=e=>{state.settings.visual=e.target.checked;saveSettings();applyVisual()};q('#visualStyle').onchange=e=>{state.settings.style=e.target.value;saveSettings();applyVisual()};q('#lowPowerToggle').onchange=e=>{state.settings.lowPower=e.target.checked;saveSettings();applyVisual()};
+q('#voiceToggle').onchange=e=>{state.settings.voice=e.target.checked;saveSettings()};q('#cheerToggle').onchange=e=>{state.settings.cheer=e.target.checked;saveSettings()};q('#bgmToggle').onchange=e=>{state.settings.bgm=e.target.checked;saveSettings();if(!state.settings.bgm)stopBgm()};q('#bgmTrack').onchange=e=>{state.settings.track=e.target.value;saveSettings();if(!q('#bgmAudio').paused)startBgm()};q('#volume').oninput=e=>{state.settings.volume=+e.target.value;saveSettings();q('#bgmAudio').volume=state.settings.volume/100};q('#visualToggle').onchange=e=>{state.settings.visual=e.target.checked;saveSettings();applyVisual();syncVideo(q('.screen.active').id)};q('#visualStyle').onchange=e=>{state.settings.style=e.target.value;saveSettings();applyVisual()};q('#lowPowerToggle').onchange=e=>{state.settings.lowPower=e.target.checked;saveSettings();applyVisual();syncVideo(q('.screen.active').id)};
 applyVisual();renderHome();if('serviceWorker'in navigator)navigator.serviceWorker.register('./sw.js');
 </script>
 </body>
