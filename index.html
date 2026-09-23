@@ -45,7 +45,7 @@
 </head>
 <body>
 <div class="app" id="app">
-<video id="bgVideo" class="videoBg" src="./15345685_2160_3840_25fps.mp4" muted loop playsinline preload="metadata"></video>
+<video id="bgVideo" class="videoBg" src="./20621391-hd_1920_1080_60fps.mp4" muted loop playsinline preload="metadata"></video>
 <div class="videoShade"></div><div class="faceShield"></div>
 
 <section id="home" class="screen active">
@@ -174,7 +174,18 @@ function saveSettings(){localStorage.setItem('visualOn',state.settings.visual?'o
 function configured(){return [1,2,3,4,5].filter(d=>state.plan[d].e.length)}
 function recommendedDay(){const start=state.lastDay?state.lastDay%5+1:(configured()[0]||1);for(let i=0;i<5;i++){const d=((start-1+i)%5)+1;if(state.plan[d].e.length)return d}return 1}
 function randomQuote(){q('#quote').textContent=quotes[Math.floor(Math.random()*quotes.length)]}
-function syncVideo(id){const v=q('#bgVideo');const use=['home','workout','rest'].includes(id)&&state.settings.visual&&!state.settings.lowPower;document.body.classList.toggle('visualOff',!use);if(use){v.play().catch(()=>{})}else v.pause()}
+function syncVideo(id){
+ const v=q('#bgVideo');
+ const use=['home','workout','rest'].includes(id)&&state.settings.visual&&!state.settings.lowPower;
+ const src=id==='home'?'./20621391-hd_1920_1080_60fps.mp4':'./15345685_2160_3840_25fps.mp4';
+ if(use && v.getAttribute('src')!==src){
+   v.pause();
+   v.setAttribute('src',src);
+   v.load();
+ }
+ document.body.classList.toggle('visualOff',!use);
+ if(use){v.play().catch(()=>{})}else v.pause()
+}
 function show(id){qa('.screen').forEach(x=>x.classList.toggle('active',x.id===id));syncVideo(id);if(id==='home'){randomQuote();renderHome()}if(id==='records')renderRecords()}
 function renderHome(){const r=recommendedDay();q('#recommendText').textContent='おすすめ：'+state.plan[r].t}
 function renderProgram(day){const r=recommendedDay();q('#dayChoices').innerHTML=[1,2,3,4,5].map(d=>'<button class="day '+(d===r?'recommended ':'')+(!state.plan[d].e.length?'disabled':'')+'" data-day="'+d+'">DAY'+d+'</button>').join('');qa('.day').forEach(b=>b.onclick=()=>{const d=+b.dataset.day;if(!state.plan[d].e.length){alert('DAY'+d+'はまだ未設定です。');return}state.selectedDay=d;renderProgram(d)});const d=day?state.plan[day]:null;q('#programList').innerHTML=d?'<div class="card"><div class="row"><div><b>'+d.t+'</b><div class="mini muted" style="margin-top:4px">'+d.s+'</div></div><span class="pill">15分</span></div></div>'+d.e.map((e,i)=>'<div class="card"><div class="row"><div><b>'+(i+1)+'. '+e.n+'</b><div class="mini muted" style="margin-top:5px">'+e.w+'kg'+(e.two?' × 2':'')+' ／ '+e.r+' ／ '+e.sets+'セット</div></div><span class="pill">'+e.m+'</span></div></div>').join(''):'';q('#beginWorkout').style.display=d?'block':'none'}
