@@ -1,0 +1,19 @@
+{
+  "name": "15MIN AI WORKOUT",
+  "short_name": "15MIN AI",
+  "description": "15分固定・記録・レストタイマー・自動重量調整つき筋トレPWA",
+  "start_url": "./index.html",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#0b0f14",
+  "theme_color": "#0b0f14",
+  "orientation": "portrait",
+  "icons": [
+    {
+      "src": "./icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}
