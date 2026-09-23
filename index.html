@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<meta name="theme-color" content="#061015">
+<meta name="theme-color" content="#03090d">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="apple-mobile-web-app-title" content="15MIN AI">
@@ -12,167 +12,129 @@
 <link rel="apple-touch-icon" href="./icon.svg">
 <title>15MIN AI WORKOUT</title>
 <style>
-:root{
-  --bg:#061015;--panel:rgba(8,18,24,.72);--panel2:rgba(11,24,31,.8);
-  --line:rgba(112,219,196,.24);--text:#f6fbfc;--muted:#a9bac1;
-  --accent:#58f0c3;--accent2:#35d9ff;--danger:#ff7d7d;
-}
-*{box-sizing:border-box}html,body{margin:0;min-height:100%;background:#061015;color:var(--text);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}
-button,input,select{font:inherit}button{cursor:pointer}
-.app{max-width:720px;margin:auto;min-height:100vh;padding:calc(18px + env(safe-area-inset-top)) 16px calc(24px + env(safe-area-inset-bottom));position:relative;overflow:hidden}
-.videoBg{position:fixed;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 64%;z-index:0;opacity:0;transform:scale(1.07);filter:saturate(.8) contrast(1.08) brightness(.48) hue-rotate(145deg);transition:opacity .35s ease;pointer-events:none}
-.videoMode .videoBg{opacity:.78}
-.videoShade{position:fixed;inset:0;z-index:1;pointer-events:none;opacity:0;transition:opacity .35s ease;background:linear-gradient(180deg,rgba(3,10,14,.98) 0%,rgba(3,10,14,.88) 18%,rgba(3,10,14,.36) 42%,rgba(3,10,14,.46) 72%,rgba(3,10,14,.92) 100%)}
-.videoMode .videoShade{opacity:1}
-.faceShield{position:fixed;left:0;right:0;top:0;height:38vh;z-index:2;pointer-events:none;opacity:0;transition:opacity .35s ease;backdrop-filter:blur(15px) brightness(.48);-webkit-backdrop-filter:blur(15px) brightness(.48);mask-image:linear-gradient(to bottom,#000 0 54%,transparent 100%);-webkit-mask-image:linear-gradient(to bottom,#000 0 54%,transparent 100%)}
-.videoMode .faceShield{opacity:1}
-.videoMode .bg{opacity:.14}.videoMode .bgGrid{opacity:.08}.videoMode .bgPulse{opacity:.12}
-.noVisual .videoBg,.noVisual .videoShade,.noVisual .faceShield{display:none}
-.screen{display:none;position:relative;min-height:calc(100vh - 60px)}.screen.active{display:block}
-.top{display:flex;align-items:center;justify-content:space-between;gap:12px;position:relative;z-index:5}
-.eyebrow{font-size:11px;letter-spacing:.22em;font-weight:900;color:#b7c8cf}.title{font-size:30px;font-weight:950;line-height:1.02;margin-top:5px}
-.iconBtn{width:46px;height:46px;border-radius:14px;border:1px solid var(--line);background:rgba(8,20,27,.76);color:white;font-size:21px;backdrop-filter:blur(12px)}
-.hero{position:relative;z-index:3;margin-top:18px;padding:24px 20px 22px;border:1px solid var(--line);border-radius:26px;background:linear-gradient(180deg,rgba(9,22,28,.62),rgba(6,14,19,.82));backdrop-filter:blur(10px);text-align:center;overflow:hidden}
-.logo{width:96px;height:96px;margin:2px auto 12px;display:block;filter:drop-shadow(0 0 18px rgba(88,240,195,.28))}
-.hero h2{font-size:28px;margin:0}.hero p{color:var(--muted);font-size:14px;line-height:1.6;margin:10px auto 0;max-width:440px}
-.start{width:100%;min-height:58px;margin-top:18px;border:0;border-radius:18px;background:linear-gradient(90deg,#50eec0,#60f3d3);color:#02120d;font-weight:950;font-size:18px;box-shadow:0 0 26px rgba(88,240,195,.22)}
-.recommend{margin-top:11px;color:var(--accent);font-size:13px;font-weight:850}
-.quickGrid{display:grid;grid-template-columns:repeat(3,1fr);gap:9px;margin-top:12px}.quickBtn{min-height:58px;border-radius:15px;border:1px solid var(--line);background:rgba(8,20,27,.72);color:white;font-weight:800}
-.section{position:relative;z-index:3;margin-top:20px}.section h3{font-size:15px;margin:0 0 10px}
-.days{display:grid;grid-template-columns:repeat(5,1fr);gap:8px}.day{min-height:56px;border-radius:15px;border:1px solid var(--line);background:rgba(9,19,26,.72);color:white;font-weight:900}.day.recommended{border-color:var(--accent);box-shadow:inset 0 0 0 1px var(--accent),0 0 18px rgba(88,240,195,.14)}.day.disabled{opacity:.35}
-.card{position:relative;z-index:3;background:var(--panel);border:1px solid var(--line);border-radius:22px;padding:16px;margin-top:12px;backdrop-filter:blur(12px)}
-.row{display:flex;justify-content:space-between;align-items:center;gap:12px}.muted{color:var(--muted)}.mini{font-size:12px}.pill{padding:8px 11px;border:1px solid var(--line);border-radius:999px;color:#c4d5da;font-size:12px;background:rgba(6,14,18,.5)}
-.prepareList .card b{font-size:17px}
-.workHero{position:relative;z-index:3;margin-top:18px;padding:18px;border-radius:24px;background:linear-gradient(180deg,rgba(6,15,20,.52),rgba(5,12,16,.82));border:1px solid var(--line);backdrop-filter:blur(12px)}
-.exerciseName{font-size:29px;font-weight:950;margin-top:4px}.muscle{font-size:13px;color:#c4d6dc;margin-top:3px}
-.ring{width:220px;height:220px;border-radius:50%;margin:18px auto 8px;display:grid;place-items:center;position:relative;background:conic-gradient(var(--accent) 0 32%,rgba(255,255,255,.12) 32% 100%);box-shadow:0 0 34px rgba(88,240,195,.08)}
-.ring:before{content:"";position:absolute;inset:17px;border-radius:50%;background:rgba(4,11,15,.86);border:1px solid rgba(255,255,255,.06)}
-.ringInner{position:relative;z-index:2;text-align:center}.ringSet{font-size:13px;color:#d5e2e6}.ringNum{font-size:58px;font-weight:950;line-height:1;margin-top:5px}.ringUnit{font-size:14px;color:#c0d0d5;margin-top:5px}
-.metricGrid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:12px}.metric{padding:14px 10px;border-radius:16px;background:rgba(6,14,19,.58);border:1px solid var(--line);text-align:center}.metric .v{font-size:22px;font-weight:900}.metric .l{font-size:11px;color:var(--muted);margin-top:4px}
-.complete{width:100%;min-height:56px;margin-top:14px;border:0;border-radius:16px;background:var(--accent);color:#04130f;font-weight:950;font-size:17px}
-.secondary{width:100%;min-height:50px;border-radius:15px;border:1px solid var(--line);background:rgba(8,20,27,.7);color:white;font-weight:800;margin-top:10px}
-.restCard{position:relative;z-index:3;margin-top:26px;padding:24px 18px;border:1px solid var(--line);border-radius:26px;background:rgba(6,15,20,.56);backdrop-filter:blur(12px);text-align:center}
-.restRing{width:235px;height:235px;border-radius:50%;margin:20px auto 8px;display:grid;place-items:center;background:conic-gradient(var(--accent) 0 75%,rgba(255,255,255,.12) 75% 100%);position:relative}
-.restRing:before{content:"";position:absolute;inset:18px;border-radius:50%;background:rgba(4,11,15,.88)}
-.restTime{position:relative;z-index:2;font-size:60px;font-weight:950;font-variant-numeric:tabular-nums}.restNext{margin-top:10px;color:#c7d8dd}
-.restActions{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:18px}
-.settings label{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:15px 0;border-bottom:1px solid rgba(255,255,255,.08)}.toggle{width:50px;height:30px;appearance:none;background:#293846;border-radius:999px;position:relative;transition:.2s}.toggle:after{content:"";position:absolute;top:3px;left:3px;width:24px;height:24px;background:white;border-radius:50%;transition:.2s}.toggle:checked{background:var(--accent)}.toggle:checked:after{left:23px}.select{background:#0a151b;color:white;border:1px solid var(--line);border-radius:10px;padding:8px}
-.finishCard{position:relative;z-index:3;text-align:center;margin-top:28px;padding:26px 18px;border:1px solid var(--line);border-radius:26px;background:rgba(7,16,22,.62);backdrop-filter:blur(12px)}
-.finishCard h2{font-size:30px;margin:8px 0}.finishCard p{color:var(--muted);line-height:1.6}
-.finishStats{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:18px}.finishStats .metric{padding:14px 8px}
-.bg{position:fixed;inset:0;z-index:0;pointer-events:none;overflow:hidden;background:linear-gradient(160deg,#061015,#08161d 52%,#071017)}
-.bg:before,.bg:after{content:"";position:absolute;border-radius:50%;filter:blur(50px);mix-blend-mode:screen}
-.bg:before{width:65vw;height:65vw;max-width:560px;max-height:560px;background:rgba(42,238,186,.24);left:-20vw;top:12vh;animation:floatA 10s ease-in-out infinite alternate}
-.bg:after{width:55vw;height:55vw;max-width:520px;max-height:520px;background:rgba(43,133,255,.22);right:-18vw;top:35vh;animation:floatB 12s ease-in-out infinite alternate}
-.bgGrid{position:fixed;inset:-20%;z-index:1;pointer-events:none;opacity:.16;background:repeating-linear-gradient(118deg,transparent 0 44px,rgba(88,240,195,.18) 45px 46px,transparent 47px 92px);animation:scan 9s linear infinite}
-.bgPulse{position:fixed;left:50%;top:56%;width:78vmin;height:78vmin;border:1px solid rgba(88,240,195,.24);border-radius:50%;transform:translate(-50%,-50%);z-index:1;pointer-events:none;animation:pulse 3.3s ease-out infinite}
-.bgPulse.p2{animation-delay:1.65s}
-.aiBg .bg{background:radial-gradient(circle at 50% 10%,rgba(45,255,206,.12),transparent 22%),linear-gradient(160deg,#061015,#071321 54%,#0a0b1c)}
-.aiBg .bgGrid{opacity:.22;background:linear-gradient(90deg,transparent 49%,rgba(88,240,195,.12) 50%,transparent 51%),linear-gradient(0deg,transparent 49%,rgba(88,240,195,.10) 50%,transparent 51%);background-size:48px 48px;animation:gridMove 7s linear infinite}
-.noVisual .bg,.noVisual .bgGrid,.noVisual .bgPulse{display:none}
-@keyframes floatA{from{transform:translate3d(-4%,0,0) scale(1)}to{transform:translate3d(26%,14%,0) scale(1.18)}}@keyframes floatB{from{transform:translate3d(0,0,0) scale(1)}to{transform:translate3d(-24%,-16%,0) scale(1.16)}}@keyframes scan{from{transform:translateX(-10%)}to{transform:translateX(10%)}}@keyframes pulse{0%{opacity:.45;transform:translate(-50%,-50%) scale(.35)}100%{opacity:0;transform:translate(-50%,-50%) scale(1.2)}}@keyframes gridMove{from{transform:translateY(0)}to{transform:translateY(48px)}}
-@media(max-width:430px){.ring{width:200px;height:200px}.restRing{width:215px;height:215px}.ringNum{font-size:54px}.metric .v{font-size:19px}.title{font-size:27px}}
+:root{--bg:#03090d;--panel:rgba(6,14,20,.72);--panel2:rgba(8,19,26,.86);--line:rgba(97,230,214,.28);--text:#f7fbfc;--muted:#a8b9c0;--accent:#55ead1;--accent2:#28d5ff;--danger:#ff8585}
+*{box-sizing:border-box}html,body{margin:0;min-height:100%;background:var(--bg);color:var(--text);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}button,input,select{font:inherit}button{cursor:pointer}
+.app{max-width:720px;margin:auto;min-height:100vh;position:relative;overflow:hidden;background:#02080c}
+.screen{display:none;position:relative;min-height:100vh;padding:calc(18px + env(safe-area-inset-top)) 16px calc(24px + env(safe-area-inset-bottom));z-index:3}.screen.active{display:block}
+.videoBg{position:fixed;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 58%;z-index:0;filter:brightness(.42) saturate(.8) contrast(1.12) hue-rotate(145deg);transform:scale(1.06);pointer-events:none}
+.videoShade{position:fixed;inset:0;z-index:1;pointer-events:none;background:linear-gradient(180deg,rgba(2,8,12,.5),rgba(2,8,12,.28) 36%,rgba(2,8,12,.52) 72%,rgba(2,8,12,.93))}
+.faceShield{position:fixed;left:0;right:0;top:0;height:34vh;z-index:2;pointer-events:none;backdrop-filter:blur(14px) brightness(.58);-webkit-backdrop-filter:blur(14px) brightness(.58);mask-image:linear-gradient(to bottom,#000 0 52%,transparent 100%);-webkit-mask-image:linear-gradient(to bottom,#000 0 52%,transparent 100%)}
+.visualOff .videoBg,.visualOff .videoShade,.visualOff .faceShield{display:none}
+.top{display:flex;align-items:center;justify-content:space-between;gap:12px;position:relative;z-index:5}.brandSmall{font-size:11px;letter-spacing:.18em;font-weight:900}.topTitle{font-size:13px;font-weight:900}.iconBtn{width:44px;height:44px;border-radius:14px;border:1px solid var(--line);background:rgba(4,13,18,.56);color:white;font-size:20px;backdrop-filter:blur(10px)}
+.homeWrap{display:flex;min-height:calc(100vh - 48px);flex-direction:column;justify-content:center;position:relative;z-index:4;text-align:center}.logoText{font-size:44px;line-height:.92;font-weight:950;letter-spacing:-.04em;text-shadow:0 4px 28px rgba(0,0,0,.45)}.logoText span{display:block;color:var(--accent)}.homeSub{margin-top:18px;font-size:12px;letter-spacing:.22em;color:#d2e0e4}.startBtn{width:100%;min-height:58px;margin-top:32px;border:1px solid rgba(96,255,224,.55);border-radius:999px;background:linear-gradient(180deg,rgba(46,221,192,.30),rgba(17,103,95,.42));color:white;font-weight:900;font-size:18px;box-shadow:0 0 24px rgba(73,238,208,.20),inset 0 0 0 1px rgba(255,255,255,.03)}
+.homeActions{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:14px}.homeAction{min-height:62px;border-radius:14px;border:1px solid var(--line);background:rgba(4,13,18,.6);color:white;font-weight:800;font-size:12px;backdrop-filter:blur(10px)}.homeAction .ico{display:block;font-size:20px;margin-bottom:5px}
+.quote{min-height:44px;margin-top:20px;font-size:14px;color:#d4e2e7;line-height:1.5;text-shadow:0 2px 12px rgba(0,0,0,.45)}.quote:before{content:"「";color:var(--accent)}.quote:after{content:"」";color:var(--accent)}
+.rec{margin-top:8px;font-size:12px;color:var(--accent);font-weight:800}
+.pageTitle{font-size:28px;font-weight:950;margin:4px 0 0}.muted{color:var(--muted)}.mini{font-size:12px}.pill{padding:8px 11px;border:1px solid var(--line);border-radius:999px;background:rgba(4,13,18,.55);font-size:12px;color:#cce1e5}
+.card{background:rgba(4,13,18,.66);border:1px solid var(--line);border-radius:20px;padding:16px;margin-top:12px;backdrop-filter:blur(12px)}.row{display:flex;justify-content:space-between;align-items:center;gap:12px}
+.days{display:grid;grid-template-columns:repeat(5,1fr);gap:8px;margin-top:14px}.day{min-height:52px;border-radius:13px;border:1px solid var(--line);background:rgba(5,14,20,.78);color:white;font-weight:900}.day.recommended{border-color:var(--accent);box-shadow:0 0 0 1px var(--accent) inset}.day.disabled{opacity:.35}
+.programList .card b{font-size:17px}.primary{width:100%;min-height:54px;border:0;border-radius:16px;background:var(--accent);color:#03110e;font-weight:950;font-size:17px;margin-top:14px}.secondary{width:100%;min-height:50px;border-radius:15px;border:1px solid var(--line);background:rgba(5,15,20,.7);color:white;font-weight:850;margin-top:10px}
+.workoutScreen .videoShade{background:linear-gradient(180deg,rgba(2,8,12,.54),rgba(2,8,12,.22) 32%,rgba(2,8,12,.38) 62%,rgba(2,8,12,.86))}
+.workMain{text-align:center;margin-top:36px}.exerciseName{font-size:30px;font-weight:950;text-shadow:0 3px 14px #000}.muscle{margin-top:5px;color:#d2dfe3;font-size:13px}
+.ring{width:236px;height:236px;margin:22px auto 8px;border-radius:50%;display:grid;place-items:center;position:relative;background:conic-gradient(var(--accent) 0 33%,rgba(255,255,255,.18) 33% 100%);box-shadow:0 0 34px rgba(74,235,209,.12)}.ring:before{content:"";position:absolute;inset:17px;border-radius:50%;background:rgba(2,9,13,.82);border:1px solid rgba(255,255,255,.06);backdrop-filter:blur(8px)}.ringInner{position:relative;z-index:2}.ringSet{font-size:13px;color:#d6e1e5}.ringNum{font-size:60px;font-weight:950;line-height:1;margin-top:7px}.ringUnit{font-size:15px;margin-top:6px;color:#c9d8dc}
+.metricGrid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:16px}.metric{padding:14px 8px;border-radius:16px;border:1px solid var(--line);background:rgba(4,13,18,.6);backdrop-filter:blur(10px);text-align:center}.metric .v{font-size:21px;font-weight:950}.metric .l{font-size:11px;color:var(--muted);margin-top:4px}
+.completeBtn{width:100%;min-height:54px;border-radius:16px;border:1px solid rgba(86,255,224,.5);background:linear-gradient(90deg,rgba(79,235,210,.86),rgba(71,211,205,.86));color:#03110e;font-weight:950;font-size:17px;margin-top:16px}
+.nextCard{margin-top:14px;padding:14px 16px;border:1px solid var(--line);border-radius:16px;background:rgba(4,13,18,.6);backdrop-filter:blur(10px)}
+.restScreen .videoShade{background:linear-gradient(180deg,rgba(8,18,24,.38),rgba(8,18,24,.2) 38%,rgba(4,10,14,.52) 72%,rgba(3,8,12,.87))}
+.restMain{text-align:center;margin-top:42px}.restTitle{font-size:30px;font-weight:950}.restSub{margin-top:8px;color:#d5e1e4}.restRing{width:248px;height:248px;margin:24px auto 8px;border-radius:50%;display:grid;place-items:center;position:relative;background:conic-gradient(var(--accent) 0 100%,rgba(255,255,255,.18) 100% 100%);box-shadow:0 0 34px rgba(74,235,209,.1)}.restRing:before{content:"";position:absolute;inset:17px;border-radius:50%;background:rgba(3,10,14,.78);backdrop-filter:blur(10px)}.restTime{position:relative;z-index:2;font-size:60px;font-weight:950;font-variant-numeric:tabular-nums}.restActions{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:16px}
+.finishScreen{background:radial-gradient(circle at 50% 18%,rgba(62,235,214,.16),transparent 24%),linear-gradient(180deg,#031017,#02080c)}.finishScreen:before,.finishScreen:after{content:"";position:absolute;border-radius:50%;filter:blur(45px);opacity:.55;pointer-events:none}.finishScreen:before{width:260px;height:260px;background:rgba(48,230,211,.16);top:12%;left:-70px;animation:floatA 8s ease-in-out infinite alternate}.finishScreen:after{width:320px;height:320px;background:rgba(32,115,255,.12);bottom:8%;right:-100px;animation:floatB 10s ease-in-out infinite alternate}@keyframes floatA{to{transform:translate(70px,40px) scale(1.18)}}@keyframes floatB{to{transform:translate(-60px,-35px) scale(1.16)}}
+.finishCard{text-align:center;margin-top:60px;position:relative;z-index:3}.finishCard h2{font-size:32px;margin:0}.finishCard p{color:#c9d8dc;line-height:1.6;margin-top:12px}.finishStats{margin-top:22px;border:1px solid var(--line);border-radius:18px;background:rgba(5,13,18,.7);overflow:hidden}.finishRow{display:flex;justify-content:space-between;align-items:center;padding:16px;border-bottom:1px solid rgba(255,255,255,.06)}.finishRow:last-child{border-bottom:0}.finishRow b{font-size:17px}
+.settings label{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:15px 0;border-bottom:1px solid rgba(255,255,255,.07)}.toggle{width:50px;height:30px;appearance:none;background:#283743;border-radius:999px;position:relative}.toggle:after{content:"";position:absolute;top:3px;left:3px;width:24px;height:24px;background:white;border-radius:50%;transition:.2s}.toggle:checked{background:var(--accent)}.toggle:checked:after{left:23px}.select{background:#07151c;color:white;border:1px solid var(--line);border-radius:10px;padding:8px}.recordItem{padding:13px 0;border-bottom:1px solid rgba(255,255,255,.06)}.recordItem:last-child{border-bottom:0}
+@media(max-width:430px){.logoText{font-size:41px}.ring{width:220px;height:220px}.restRing{width:230px;height:230px}.ringNum{font-size:56px}}
 </style>
 </head>
 <body>
 <div class="app" id="app">
-  <video id="workoutVideo" class="videoBg" src="./15345685_2160_3840_25fps.mp4" muted loop playsinline preload="metadata"></video>
-  <div class="videoShade"></div>
-  <div class="faceShield"></div>
-  <div class="bg"></div><div class="bgGrid"></div><div class="bgPulse"></div><div class="bgPulse p2"></div>
+<video id="bgVideo" class="videoBg" src="./15345685_2160_3840_25fps.mp4" muted loop playsinline preload="metadata"></video>
+<div class="videoShade"></div><div class="faceShield"></div>
 
-  <section id="home" class="screen active">
-    <div class="top">
-      <div><div class="eyebrow">15 MINUTES. BETTER YOU.</div><div class="title">15MIN AI<br>WORKOUT</div></div>
-      <button id="openSettings" class="iconBtn">⚙︎</button>
+<section id="home" class="screen active">
+  <div class="homeWrap">
+    <div class="logoText">15MIN<span>AI WORKOUT</span></div>
+    <div class="homeSub">STRONGER THAN YESTERDAY.</div>
+    <button id="quickStart" class="startBtn">START</button>
+    <div class="homeActions">
+      <button id="programBtn" class="homeAction"><span class="ico">▣</span>プログラム</button>
+      <button id="settingsBtn" class="homeAction"><span class="ico">⚙︎</span>設定</button>
+      <button id="recordBtn" class="homeAction"><span class="ico">✓</span>記録</button>
     </div>
-    <div class="hero">
-      <img class="logo" src="./icon.svg" alt="15MIN AI WORKOUT">
-      <h2>今日も、15分だけ。</h2>
-      <p>前回の続きからおすすめします。気分に合わせて別のDAYも選べます。</p>
-      <button id="quickStart" class="start">START</button>
-      <div id="recommendText" class="recommend"></div>
-      <div class="quickGrid">
-        <button id="programBtn" class="quickBtn">プログラム</button>
-        <button id="settingsBtn" class="quickBtn">設定</button>
-        <button id="recordBtn" class="quickBtn">記録</button>
-      </div>
-    </div>
-    <div class="section">
-      <h3>DAYを選ぶ</h3>
-      <div id="dayChoices" class="days"></div>
-    </div>
-  </section>
+    <div id="quote" class="quote"></div>
+    <div id="recommendText" class="rec"></div>
+  </div>
+</section>
 
-  <section id="settings" class="screen">
-    <div class="top"><button class="iconBtn" data-back="home">‹</button><div><div class="eyebrow">SETTINGS</div><div class="title" style="font-size:26px">設定</div></div><div style="width:46px"></div></div>
-    <div class="card settings">
-      <label><span><b>音声ガイド</b><br><span class="mini muted">種目・重量・回数を読み上げ</span></span><input id="voiceToggle" class="toggle" type="checkbox"></label>
-      <label><span><b>応援ボイス</b><br><span class="mini muted">頑張れ・いいペース等</span></span><input id="cheerToggle" class="toggle" type="checkbox"></label>
-      <label><span><b>BGM</b><br><span class="mini muted">トレ中に再生</span></span><input id="bgmToggle" class="toggle" type="checkbox"></label>
-      <label><span><b>BGM曲</b></span><select id="bgmTrack" class="select"><option value="142">RAGE 142 BPM</option><option value="118">FOCUS 118 BPM</option></select></label>
-      <label><span><b>BGM音量</b></span><input id="volume" type="range" min="0" max="100" value="38"></label>
-      <label><span><b>背景映像</b><br><span class="mini muted">動く背景を表示</span></span><input id="visualToggle" class="toggle" type="checkbox"></label>
-      <label><span><b>背景スタイル</b></span><select id="visualStyle" class="select"><option value="dark">DARK NEON</option><option value="ai">AI FUTURE</option></select></label>
-      <label><span><b>低負荷モード</b><br><span class="mini muted">背景アニメーションを停止</span></span><input id="lowPowerToggle" class="toggle" type="checkbox"></label>
-    </div>
-  </section>
+<section id="program" class="screen">
+  <div class="top"><button class="iconBtn" data-back="home">‹</button><div><div class="brandSmall">PROGRAM</div><div class="pageTitle">DAYを選ぶ</div></div><div style="width:44px"></div></div>
+  <div id="dayChoices" class="days"></div>
+  <div id="programList" class="programList"></div>
+  <button id="beginWorkout" class="primary" style="display:none">このDAYを開始</button>
+</section>
 
-  <section id="prepare" class="screen">
-    <div class="top"><button class="iconBtn" data-back="home">‹</button><div><div class="eyebrow">PROGRAM</div><div id="prepareTitle" class="title" style="font-size:26px"></div></div><div class="pill">15分固定</div></div>
-    <div id="prepareList" class="prepareList"></div>
-    <button id="beginWorkout" class="start">このDAYを開始</button>
-  </section>
+<section id="settings" class="screen">
+  <div class="top"><button class="iconBtn" data-back="home">‹</button><div><div class="brandSmall">SETTINGS</div><div class="pageTitle">設定</div></div><div style="width:44px"></div></div>
+  <div class="card settings">
+    <label><span><b>背景映像</b><br><span class="mini muted">トレ中・レスト中に動画を表示</span></span><input id="visualToggle" class="toggle" type="checkbox"></label>
+    <label><span><b>低負荷モード</b><br><span class="mini muted">背景動画を停止して節電</span></span><input id="lowPowerToggle" class="toggle" type="checkbox"></label>
+    <label><span><b>BGM</b><br><span class="mini muted">トレーニング中に再生</span></span><input id="bgmToggle" class="toggle" type="checkbox"></label>
+    <label><span><b>BGM曲</b></span><select id="bgmTrack" class="select"><option value="142">RAGE 142 BPM</option><option value="118">FOCUS 118 BPM</option></select></label>
+    <label><span><b>BGM音量</b></span><input id="volume" type="range" min="0" max="100"></label>
+    <label><span><b>音声ガイド</b><br><span class="mini muted">種目・重量・回数を読み上げ</span></span><input id="voiceToggle" class="toggle" type="checkbox"></label>
+    <label><span><b>応援ボイス</b><br><span class="mini muted">短い応援を追加</span></span><input id="cheerToggle" class="toggle" type="checkbox"></label>
+  </div>
+</section>
 
-  <section id="workout" class="screen">
-    <div class="top"><div><div class="eyebrow">WORKOUT</div><div id="workoutDay" class="title" style="font-size:25px"></div></div><div class="pill" id="mainTime">15:00</div></div>
-    <div class="workHero">
-      <div class="muted mini">現在の種目</div>
-      <div id="exerciseName" class="exerciseName"></div>
-      <div id="exerciseMuscle" class="muscle"></div>
-      <div id="setRing" class="ring">
-        <div class="ringInner"><div id="ringSet" class="ringSet"></div><div id="ringNum" class="ringNum"></div><div id="ringUnit" class="ringUnit"></div></div>
-      </div>
-      <div class="metricGrid">
-        <div class="metric"><div id="metricWeight" class="v"></div><div class="l">重量</div></div>
-        <div class="metric"><div id="metricNext" class="v"></div><div class="l">次セットまで</div></div>
-        <div class="metric"><div id="metricExercise" class="v"></div><div class="l">種目</div></div>
-      </div>
-      <button id="setComplete" class="complete">このセット完了</button>
-    </div>
-    <div class="card"><div class="row"><span class="muted mini">次</span><b id="upNext"></b></div></div>
-    <button id="quitWorkout" class="secondary">トレーニングを終了</button>
-  </section>
+<section id="records" class="screen">
+  <div class="top"><button class="iconBtn" data-back="home">‹</button><div><div class="brandSmall">RECORDS</div><div class="pageTitle">記録</div></div><div style="width:44px"></div></div>
+  <div id="recordList" class="card"></div>
+</section>
 
-  <section id="rest" class="screen">
-    <div class="top"><div><div class="eyebrow">REST</div><div class="title" style="font-size:25px">休憩中</div></div><div class="pill" id="mainTimeRest">15:00</div></div>
-    <div class="restCard">
-      <div class="muted">次のセットに備えましょう</div>
-      <div id="restRing" class="restRing"><div id="restTime" class="restTime">60</div></div>
-      <div id="restNext" class="restNext"></div>
-      <div class="restActions">
-        <button id="pauseRest" class="secondary">一時停止</button>
-        <button id="skipRest" class="secondary">スキップ</button>
-      </div>
+<section id="workout" class="screen workoutScreen">
+  <div class="top"><button id="workoutBack" class="iconBtn">‹</button><div class="topTitle">15MIN AI WORKOUT</div><div class="pill" id="mainTime">15:00</div></div>
+  <div class="workMain">
+    <div id="exerciseName" class="exerciseName"></div>
+    <div id="exerciseMuscle" class="muscle"></div>
+    <div id="setRing" class="ring">
+      <div class="ringInner"><div id="ringSet" class="ringSet"></div><div id="ringNum" class="ringNum"></div><div id="ringUnit" class="ringUnit"></div></div>
     </div>
-  </section>
+    <div class="metricGrid">
+      <div class="metric"><div id="metricWeight" class="v"></div><div class="l">重量</div></div>
+      <div class="metric"><div id="metricRest" class="v">60秒</div><div class="l">休憩</div></div>
+      <div class="metric"><div id="metricProgress" class="v"></div><div class="l">種目</div></div>
+    </div>
+    <button id="setComplete" class="completeBtn">このセット完了</button>
+  </div>
+  <div class="nextCard"><div class="row"><span class="muted mini">次</span><b id="upNext"></b></div></div>
+</section>
 
-  <section id="finish" class="screen">
-    <div class="finishCard">
-      <img class="logo" src="./icon.svg" alt="">
-      <h2>お疲れさまでした！</h2>
-      <p>今日も一歩、理想の自分に近づきました。</p>
-      <div class="finishStats">
-        <div class="metric"><div class="v">15:00</div><div class="l">トレ時間</div></div>
-        <div class="metric"><div id="finishSets" class="v">0</div><div class="l">完了セット</div></div>
-        <div class="metric"><div id="finishNext" class="v">DAY</div><div class="l">次回おすすめ</div></div>
-      </div>
-      <button id="repeatDay" class="start">もう一度やる</button>
-      <button id="finishHome" class="secondary">ホームに戻る</button>
+<section id="rest" class="screen restScreen">
+  <div class="top"><button id="restBack" class="iconBtn">‹</button><div class="topTitle">15MIN AI WORKOUT</div><div class="pill" id="mainTimeRest">15:00</div></div>
+  <div class="restMain">
+    <div class="restTitle">休憩中</div>
+    <div class="restSub">次のセットに備えましょう</div>
+    <div id="restRing" class="restRing"><div id="restTime" class="restTime">60</div></div>
+    <div id="restNext" class="muted"></div>
+    <div class="restActions">
+      <button id="pauseRest" class="secondary">一時停止</button>
+      <button id="skipRest" class="secondary">スキップ</button>
     </div>
-  </section>
+  </div>
+</section>
+
+<section id="finish" class="screen finishScreen">
+  <div class="finishCard">
+    <div class="brandSmall">15MIN AI WORKOUT</div>
+    <h2>お疲れさまでした！</h2>
+    <p>今日も一歩、理想の自分に近づきました。</p>
+    <div class="finishStats">
+      <div class="finishRow"><span>トレーニング時間</span><b id="finishTime">15:00</b></div>
+      <div class="finishRow"><span>完了したセット</span><b id="finishSets">0 set</b></div>
+      <div class="finishRow"><span>次回おすすめ</span><b id="finishNext">DAY2</b></div>
+    </div>
+    <button id="repeatDay" class="primary">もう一度やる</button>
+    <button id="finishHome" class="secondary">ホームに戻る</button>
+  </div>
+</section>
 </div>
-
 <audio id="bgmAudio" loop playsinline preload="metadata"></audio>
 <script>
 const BASE={
@@ -188,58 +150,42 @@ const BASE={
 4:{t:'DAY4',s:'メニュー未設定',e:[]},
 5:{t:'DAY5',s:'メニュー未設定',e:[]}
 };
+const quotes=['継続は、最強の才能だ。','今日の15分が、未来を変える。','完璧より、継続。','昨日の自分を、少し超える。','小さな一歩が、大きな差になる。','迷ったら、まず1セット。','強さは、静かに積み上がる。','今日やる人が、明日変わる。','積み重ねは、裏切らない。','Better day. Everyday.'];
 const state={
  plan:JSON.parse(localStorage.getItem('plan')||'null')||JSON.parse(JSON.stringify(BASE)),
- lastDay:+(localStorage.getItem('lastCompletedDay')||0),selectedDay:2,exerciseIndex:0,setIndex:1,
- mainSec:900,mainTimer:null,restTimer:null,restSec:60,restPaused:false,completedSets:0,
- settings:{
-  voice:localStorage.getItem('voiceOn')!=='off',
-  cheer:localStorage.getItem('cheerOn')!=='off',
-  bgm:localStorage.getItem('bgmOn')!=='off',
-  volume:+(localStorage.getItem('bgmVolume')||38),
-  track:localStorage.getItem('bgmTrack')||'142',
-  visual:localStorage.getItem('visualOn')!=='off',
-  style:localStorage.getItem('visualStyle')||'dark',
-  lowPower:localStorage.getItem('lowPower')==='on'
- }
+ lastDay:+(localStorage.getItem('lastCompletedDay')||0),selectedDay:2,exerciseIndex:0,setIndex:1,completedSets:0,
+ mainSec:900,mainTimer:null,restSec:60,restTimer:null,restPaused:false,
+ settings:{visual:localStorage.getItem('visualOn')!=='off',lowPower:localStorage.getItem('lowPower')==='on',bgm:localStorage.getItem('bgmOn')!=='off',track:localStorage.getItem('bgmTrack')||'142',volume:+(localStorage.getItem('bgmVolume')||38),voice:localStorage.getItem('voiceOn')!=='off',cheer:localStorage.getItem('cheerOn')!=='off'}
 };
 const q=s=>document.querySelector(s),qa=s=>[...document.querySelectorAll(s)];
-function saveSettings(){localStorage.setItem('voiceOn',state.settings.voice?'on':'off');localStorage.setItem('cheerOn',state.settings.cheer?'on':'off');localStorage.setItem('bgmOn',state.settings.bgm?'on':'off');localStorage.setItem('bgmVolume',state.settings.volume);localStorage.setItem('bgmTrack',state.settings.track);localStorage.setItem('visualOn',state.settings.visual?'on':'off');localStorage.setItem('visualStyle',state.settings.style);localStorage.setItem('lowPower',state.settings.lowPower?'on':'off')}
-function applyVisual(){q('#app').classList.toggle('aiBg',state.settings.style==='ai');q('#app').classList.toggle('noVisual',!state.settings.visual||state.settings.lowPower)}
-function syncVideo(id){
- const v=q('#workoutVideo'),on=(id==='workout'||id==='rest')&&state.settings.visual&&!state.settings.lowPower;
- q('#app').classList.toggle('videoMode',on);
- if(on){v.play().catch(()=>{})}else{v.pause()}
-}
-function show(id){applyVisual();qa('.screen').forEach(x=>x.classList.toggle('active',x.id===id));syncVideo(id)}
+function saveSettings(){localStorage.setItem('visualOn',state.settings.visual?'on':'off');localStorage.setItem('lowPower',state.settings.lowPower?'on':'off');localStorage.setItem('bgmOn',state.settings.bgm?'on':'off');localStorage.setItem('bgmTrack',state.settings.track);localStorage.setItem('bgmVolume',state.settings.volume);localStorage.setItem('voiceOn',state.settings.voice?'on':'off');localStorage.setItem('cheerOn',state.settings.cheer?'on':'off')}
 function configured(){return [1,2,3,4,5].filter(d=>state.plan[d].e.length)}
 function recommendedDay(){const start=state.lastDay?state.lastDay%5+1:(configured()[0]||1);for(let i=0;i<5;i++){const d=((start-1+i)%5)+1;if(state.plan[d].e.length)return d}return 1}
-function renderHome(){const rec=recommendedDay();state.selectedDay=rec;q('#recommendText').textContent='おすすめ：'+state.plan[rec].t;q('#dayChoices').innerHTML=[1,2,3,4,5].map(d=>'<button class="day '+(d===rec?'recommended ':'')+(!state.plan[d].e.length?'disabled':'')+'" data-day="'+d+'">DAY'+d+'</button>').join('');qa('.day').forEach(b=>b.onclick=()=>{const d=+b.dataset.day;if(!state.plan[d].e.length){alert('DAY'+d+'はまだ未設定です。');return}openPrepare(d)})}
-function openPrepare(day){state.selectedDay=day;const d=state.plan[day];q('#prepareTitle').textContent=d.t;q('#prepareList').innerHTML=d.e.map((e,i)=>'<div class="card"><div class="row"><div><b>'+(i+1)+'. '+e.n+'</b><div class="mini muted" style="margin-top:5px">'+e.w+'kg'+(e.two?' × 2':'')+' ／ '+e.r+' ／ '+e.sets+'セット</div></div><span class="pill">'+e.m+'</span></div></div>').join('');show('prepare')}
+function randomQuote(){q('#quote').textContent=quotes[Math.floor(Math.random()*quotes.length)]}
+function syncVideo(id){const v=q('#bgVideo');const use=['home','workout','rest'].includes(id)&&state.settings.visual&&!state.settings.lowPower;document.body.classList.toggle('visualOff',!use);if(use){v.play().catch(()=>{})}else v.pause()}
+function show(id){qa('.screen').forEach(x=>x.classList.toggle('active',x.id===id));syncVideo(id);if(id==='home'){randomQuote();renderHome()}if(id==='records')renderRecords()}
+function renderHome(){const r=recommendedDay();q('#recommendText').textContent='おすすめ：'+state.plan[r].t}
+function renderProgram(day){const r=recommendedDay();q('#dayChoices').innerHTML=[1,2,3,4,5].map(d=>'<button class="day '+(d===r?'recommended ':'')+(!state.plan[d].e.length?'disabled':'')+'" data-day="'+d+'">DAY'+d+'</button>').join('');qa('.day').forEach(b=>b.onclick=()=>{const d=+b.dataset.day;if(!state.plan[d].e.length){alert('DAY'+d+'はまだ未設定です。');return}state.selectedDay=d;renderProgram(d)});const d=day?state.plan[day]:null;q('#programList').innerHTML=d?'<div class="card"><div class="row"><div><b>'+d.t+'</b><div class="mini muted" style="margin-top:4px">'+d.s+'</div></div><span class="pill">15分</span></div></div>'+d.e.map((e,i)=>'<div class="card"><div class="row"><div><b>'+(i+1)+'. '+e.n+'</b><div class="mini muted" style="margin-top:5px">'+e.w+'kg'+(e.two?' × 2':'')+' ／ '+e.r+' ／ '+e.sets+'セット</div></div><span class="pill">'+e.m+'</span></div></div>').join(''):'';q('#beginWorkout').style.display=d?'block':'none'}
 function speak(text){if(!state.settings.voice||!('speechSynthesis'in window))return;speechSynthesis.cancel();const u=new SpeechSynthesisUtterance(text);u.lang='ja-JP';u.rate=.98;speechSynthesis.speak(u)}
 function announce(){const e=state.plan[state.selectedDay].e[state.exerciseIndex];let t=e.n+'。'+e.w+'キロ'+(e.two?'を両手に。':'。')+e.voice+'。'+state.setIndex+'セット目。';if(state.settings.cheer)t+=['頑張りましょう。','いいペースです。','フォームを意識していきましょう。'][(state.exerciseIndex+state.setIndex)%3];speak(t)}
 function updateMain(){const t=String(Math.floor(state.mainSec/60)).padStart(2,'0')+':'+String(state.mainSec%60).padStart(2,'0');q('#mainTime').textContent=t;q('#mainTimeRest').textContent=t}
-function renderWorkout(){const d=state.plan[state.selectedDay],e=d.e[state.exerciseIndex];q('#workoutDay').textContent=d.t;q('#exerciseName').textContent=e.n;q('#exerciseMuscle').textContent=e.m;q('#ringSet').textContent=state.setIndex+' / '+e.sets+' SET';q('#ringNum').textContent=e.voice.replace(/[^0-9]/g,'')||'12';q('#ringUnit').textContent=e.r.includes('左右')?'左右回':'回';q('#metricWeight').textContent=e.w+'kg';q('#metricNext').textContent='60秒';q('#metricExercise').textContent=(state.exerciseIndex+1)+'/'+d.e.length;q('#upNext').textContent=peekNext()||'このDAY完了';q('#setRing').style.background='conic-gradient(var(--accent) 0 '+Math.round(state.setIndex/e.sets*100)+'%,rgba(255,255,255,.12) '+Math.round(state.setIndex/e.sets*100)+'% 100%)'}
+function renderWorkout(){const d=state.plan[state.selectedDay],e=d.e[state.exerciseIndex];q('#exerciseName').textContent=e.n;q('#exerciseMuscle').textContent=e.m;q('#ringSet').textContent=state.setIndex+' / '+e.sets+' SET';q('#ringNum').textContent=e.voice.replace(/[^0-9]/g,'')||'12';q('#ringUnit').textContent=e.r.includes('左右')?'左右回':'回';q('#metricWeight').textContent=e.w+'kg';q('#metricProgress').textContent=(state.exerciseIndex+1)+'/'+d.e.length;q('#upNext').textContent=peekNext()||'このDAY完了';const p=Math.round(state.setIndex/e.sets*100);q('#setRing').style.background='conic-gradient(var(--accent) 0 '+p+'%,rgba(255,255,255,.18) '+p+'% 100%)'}
 function peekNext(){const d=state.plan[state.selectedDay],e=d.e[state.exerciseIndex];if(state.setIndex<e.sets)return e.n+' '+(state.setIndex+1)+'セット目';if(state.exerciseIndex<d.e.length-1)return d.e[state.exerciseIndex+1].n+' 1セット目';return ''}
-function startWorkout(){state.exerciseIndex=0;state.setIndex=1;state.completedSets=0;state.mainSec=900;updateMain();clearInterval(state.mainTimer);state.mainTimer=setInterval(()=>{state.mainSec=Math.max(0,state.mainSec-1);updateMain();if(state.mainSec===0){clearInterval(state.mainTimer);finishWorkout(true)}},1000);if(state.settings.bgm)startBgm();renderWorkout();show('workout');announce()}
+function startWorkout(){if(!state.plan[state.selectedDay].e.length)return;state.exerciseIndex=0;state.setIndex=1;state.completedSets=0;state.mainSec=900;updateMain();clearInterval(state.mainTimer);state.mainTimer=setInterval(()=>{state.mainSec=Math.max(0,state.mainSec-1);updateMain();if(state.mainSec===0){clearInterval(state.mainTimer);finishWorkout(true)}},1000);if(state.settings.bgm)startBgm();renderWorkout();show('workout');announce()}
 function completeSet(){const d=state.plan[state.selectedDay],e=d.e[state.exerciseIndex];const logs=JSON.parse(localStorage.getItem('logs')||'[]');logs.push({ts:Date.now(),day:state.selectedDay,exercise:e.n,kg:e.w,reps:e.r,set:state.setIndex});localStorage.setItem('logs',JSON.stringify(logs));state.completedSets++;if(state.setIndex<e.sets)state.setIndex++;else if(state.exerciseIndex<d.e.length-1){state.exerciseIndex++;state.setIndex=1}else{finishWorkout(false);return}startRest()}
-function startRest(){clearInterval(state.restTimer);state.restPaused=false;state.restSec=60;q('#restTime').textContent='60';q('#restNext').textContent='次：'+currentLabel();q('#restRing').style.background='conic-gradient(var(--accent) 0 100%,rgba(255,255,255,.12) 100% 100%)';show('rest');speak('セット終了。60秒休憩です。');state.restTimer=setInterval(tickRest,1000)}
-function tickRest(){if(state.restPaused)return;state.restSec--;q('#restTime').textContent=state.restSec;q('#restRing').style.background='conic-gradient(var(--accent) 0 '+(state.restSec/60*100)+'%,rgba(255,255,255,.12) '+(state.restSec/60*100)+'% 100%)';if(state.restSec===10)speak('あと10秒です。');if(state.restSec<=0){clearInterval(state.restTimer);resumeAfterRest()}}
+function startRest(){clearInterval(state.restTimer);state.restPaused=false;state.restSec=60;q('#restTime').textContent='60';q('#restNext').textContent='次：'+currentLabel();q('#restRing').style.background='conic-gradient(var(--accent) 0 100%,rgba(255,255,255,.18) 100% 100%)';show('rest');speak('セット終了。60秒休憩です。');state.restTimer=setInterval(tickRest,1000)}
+function tickRest(){if(state.restPaused)return;state.restSec--;q('#restTime').textContent=state.restSec;const p=state.restSec/60*100;q('#restRing').style.background='conic-gradient(var(--accent) 0 '+p+'%,rgba(255,255,255,.18) '+p+'% 100%)';if(state.restSec===10)speak('あと10秒です。');if(state.restSec<=0){clearInterval(state.restTimer);resumeAfterRest()}}
 function currentLabel(){const e=state.plan[state.selectedDay].e[state.exerciseIndex];return e.n+' '+state.setIndex+'セット目'}
-function resumeAfterRest(){show('workout');renderWorkout();speak('レスト終了。次のセットです。');setTimeout(announce,1200)}
-function finishWorkout(timeup){clearInterval(state.mainTimer);clearInterval(state.restTimer);stopBgm();if('speechSynthesis'in window)speechSynthesis.cancel();state.lastDay=state.selectedDay;localStorage.setItem('lastCompletedDay',String(state.lastDay));const next=recommendedAfter(state.selectedDay);q('#finishSets').textContent=state.completedSets;q('#finishNext').textContent='DAY'+next;show('finish');if(state.settings.voice)setTimeout(()=>speak('お疲れさまでした。今日のトレーニングは終了です。'),250)}
+function resumeAfterRest(){show('workout');renderWorkout();speak('レスト終了。次のセットです。');setTimeout(announce,1100)}
 function recommendedAfter(day){for(let i=1;i<=5;i++){const d=((day-1+i)%5)+1;if(state.plan[d].e.length)return d}return day}
-function startBgm(){if(!state.settings.bgm)return;const a=q('#bgmAudio');a.src=state.settings.track==='118'?'./249_long_BPM118.mp3':'./126_long_BPM142.mp3';a.volume=Math.max(0,Math.min(1,state.settings.volume/100));a.play().catch(()=>{})}
+function finishWorkout(timeup){clearInterval(state.mainTimer);clearInterval(state.restTimer);stopBgm();if('speechSynthesis'in window)speechSynthesis.cancel();state.lastDay=state.selectedDay;localStorage.setItem('lastCompletedDay',String(state.lastDay));q('#finishSets').textContent=state.completedSets+' set';q('#finishNext').textContent='DAY'+recommendedAfter(state.selectedDay);q('#finishTime').textContent=timeup?'15:00':String(Math.floor((900-state.mainSec)/60)).padStart(2,'0')+':'+String((900-state.mainSec)%60).padStart(2,'0');show('finish');if(state.settings.voice)setTimeout(()=>speak('お疲れさまでした。今日のトレーニングは終了です。'),250)}
+function startBgm(){if(!state.settings.bgm)return;const a=q('#bgmAudio');a.src=state.settings.track==='118'?'./249_long_BPM118.mp3':'./126_long_BPM142.mp3';a.volume=state.settings.volume/100;a.play().catch(()=>{})}
 function stopBgm(){const a=q('#bgmAudio');a.pause();a.currentTime=0}
-q('#openSettings').onclick=()=>show('settings');q('#settingsBtn').onclick=()=>show('settings');q('#programBtn').onclick=()=>openPrepare(recommendedDay());q('#recordBtn').onclick=()=>alert('記録画面は次の改修で追加できます。');
-qa('[data-back]').forEach(b=>b.onclick=()=>{renderHome();show(b.dataset.back)});
-q('#quickStart').onclick=()=>openPrepare(recommendedDay());q('#beginWorkout').onclick=startWorkout;q('#setComplete').onclick=completeSet;
-q('#skipRest').onclick=()=>{clearInterval(state.restTimer);resumeAfterRest()};q('#pauseRest').onclick=()=>{state.restPaused=!state.restPaused;q('#pauseRest').textContent=state.restPaused?'再開':'一時停止'};
-q('#quitWorkout').onclick=()=>{if(confirm('トレーニングを終了しますか？')){clearInterval(state.mainTimer);clearInterval(state.restTimer);stopBgm();renderHome();show('home')}};
-q('#finishHome').onclick=()=>{renderHome();show('home')};q('#repeatDay').onclick=()=>openPrepare(state.selectedDay);
-q('#voiceToggle').checked=state.settings.voice;q('#cheerToggle').checked=state.settings.cheer;q('#bgmToggle').checked=state.settings.bgm;q('#volume').value=state.settings.volume;q('#bgmTrack').value=state.settings.track;q('#visualToggle').checked=state.settings.visual;q('#visualStyle').value=state.settings.style;q('#lowPowerToggle').checked=state.settings.lowPower;
-q('#voiceToggle').onchange=e=>{state.settings.voice=e.target.checked;saveSettings()};q('#cheerToggle').onchange=e=>{state.settings.cheer=e.target.checked;saveSettings()};q('#bgmToggle').onchange=e=>{state.settings.bgm=e.target.checked;saveSettings();if(!state.settings.bgm)stopBgm()};q('#bgmTrack').onchange=e=>{state.settings.track=e.target.value;saveSettings();if(!q('#bgmAudio').paused)startBgm()};q('#volume').oninput=e=>{state.settings.volume=+e.target.value;saveSettings();q('#bgmAudio').volume=state.settings.volume/100};q('#visualToggle').onchange=e=>{state.settings.visual=e.target.checked;saveSettings();applyVisual();syncVideo(q('.screen.active').id)};q('#visualStyle').onchange=e=>{state.settings.style=e.target.value;saveSettings();applyVisual()};q('#lowPowerToggle').onchange=e=>{state.settings.lowPower=e.target.checked;saveSettings();applyVisual();syncVideo(q('.screen.active').id)};
-applyVisual();renderHome();if('serviceWorker'in navigator)navigator.serviceWorker.register('./sw.js');
+function renderRecords(){const logs=JSON.parse(localStorage.getItem('logs')||'[]');q('#recordList').innerHTML=logs.length?logs.slice(-20).reverse().map(l=>'<div class="recordItem"><b>'+l.exercise+'</b><div class="mini muted" style="margin-top:4px">DAY'+l.day+' ・ '+l.kg+'kg ・ '+l.reps+' ・ SET'+l.set+'<br>'+new Date(l.ts).toLocaleString('ja-JP')+'</div></div>').join(''):'<div class="muted">まだ記録はありません。</div>'}
+q('#quickStart').onclick=()=>{state.selectedDay=recommendedDay();startWorkout()};q('#programBtn').onclick=()=>{renderProgram(recommendedDay());show('program')};q('#settingsBtn').onclick=()=>show('settings');q('#recordBtn').onclick=()=>show('records');qa('[data-back]').forEach(b=>b.onclick=()=>show(b.dataset.back));q('#beginWorkout').onclick=startWorkout;q('#setComplete').onclick=completeSet;q('#pauseRest').onclick=()=>{state.restPaused=!state.restPaused;q('#pauseRest').textContent=state.restPaused?'再開':'一時停止'};q('#skipRest').onclick=()=>{clearInterval(state.restTimer);resumeAfterRest()};q('#workoutBack').onclick=()=>{if(confirm('トレーニングを終了しますか？')){clearInterval(state.mainTimer);clearInterval(state.restTimer);stopBgm();show('home')}};q('#restBack').onclick=q('#workoutBack').onclick;q('#repeatDay').onclick=startWorkout;q('#finishHome').onclick=()=>show('home');
+q('#visualToggle').checked=state.settings.visual;q('#lowPowerToggle').checked=state.settings.lowPower;q('#bgmToggle').checked=state.settings.bgm;q('#bgmTrack').value=state.settings.track;q('#volume').value=state.settings.volume;q('#voiceToggle').checked=state.settings.voice;q('#cheerToggle').checked=state.settings.cheer;
+q('#visualToggle').onchange=e=>{state.settings.visual=e.target.checked;saveSettings();syncVideo(q('.screen.active').id)};q('#lowPowerToggle').onchange=e=>{state.settings.lowPower=e.target.checked;saveSettings();syncVideo(q('.screen.active').id)};q('#bgmToggle').onchange=e=>{state.settings.bgm=e.target.checked;saveSettings();if(!state.settings.bgm)stopBgm()};q('#bgmTrack').onchange=e=>{state.settings.track=e.target.value;saveSettings();if(!q('#bgmAudio').paused)startBgm()};q('#volume').oninput=e=>{state.settings.volume=+e.target.value;saveSettings();q('#bgmAudio').volume=state.settings.volume/100};q('#voiceToggle').onchange=e=>{state.settings.voice=e.target.checked;saveSettings()};q('#cheerToggle').onchange=e=>{state.settings.cheer=e.target.checked;saveSettings()};
+randomQuote();renderHome();syncVideo('home');if('serviceWorker'in navigator)navigator.serviceWorker.register('./sw.js');
 </script>
 </body>
 </html>
