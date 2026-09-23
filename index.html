@@ -138,7 +138,10 @@
 <audio id="bgmAudio" loop playsinline preload="metadata"></audio>
 <script>
 const BASE={
-1:{t:'DAY1',s:'メニュー未設定',e:[]},
+1:{t:'DAY1｜胸＋三頭',s:'胸と腕の押す力を鍛える日',e:[
+{id:'press',n:'ダンベルベンチプレス',w:10,r:'12回',sets:3,m:'胸・三頭',two:true,voice:'12回'},
+{id:'fly',n:'ダンベルフライ',w:5.5,r:'12回',sets:3,m:'胸',two:true,voice:'12回'},
+{id:'tri',n:'オーバーヘッドトライセプスEX',w:10,r:'12回',sets:3,m:'三頭',voice:'12回'}]},
 2:{t:'DAY2｜背中＋二頭',s:'背中と腕を鍛える日',e:[
 {id:'row',n:'ワンハンドロー',w:10,r:'左右12回',sets:3,m:'背中・二頭',voice:'左右12回'},
 {id:'rf',n:'リバースフライ',w:4,r:'15回',sets:3,m:'背中・肩後部',voice:'15回'},
@@ -147,8 +150,14 @@ const BASE={
 {id:'sq',n:'ダンベルスクワット',w:10,r:'12回',sets:3,m:'脚・臀部',two:true,voice:'12回'},
 {id:'bg',n:'ブルガリアンスクワット',w:8.5,r:'左右10回',sets:3,m:'脚・臀部',two:true,voice:'左右10回'},
 {id:'rdl',n:'ルーマニアンデッドリフト',w:10,r:'12回',sets:2,m:'ハム・臀部',two:true,voice:'12回'}]},
-4:{t:'DAY4',s:'メニュー未設定',e:[]},
-5:{t:'DAY5',s:'メニュー未設定',e:[]}
+4:{t:'DAY4｜肩',s:'肩幅と立体感を作る日',e:[
+{id:'sp',n:'ダンベルショルダープレス',w:7,r:'12回',sets:3,m:'肩・三頭',two:true,voice:'12回'},
+{id:'lat',n:'サイドレイズ',w:4,r:'15回',sets:3,m:'肩中部',two:true,voice:'15回'},
+{id:'front',n:'フロントレイズ',w:4,r:'12回',sets:3,m:'肩前部',two:true,voice:'12回'}]},
+5:{t:'DAY5｜全身＋弱点補強',s:'全身を動かしながら腕も補強する日',e:[
+{id:'thruster',n:'ダンベルスラスター',w:5.5,r:'10回',sets:3,m:'脚・肩・全身',two:true,voice:'10回'},
+{id:'hammer',n:'ハンマーカール',w:7,r:'12回',sets:3,m:'二頭・前腕',two:true,voice:'12回'},
+{id:'calf',n:'ダンベルカーフレイズ',w:10,r:'15回',sets:2,m:'ふくらはぎ',two:true,voice:'15回'}]}
 };
 const quotes=['継続は、最強の才能だ。','今日の15分が、未来を変える。','完璧より、継続。','昨日の自分を、少し超える。','小さな一歩が、大きな差になる。','迷ったら、まず1セット。','強さは、静かに積み上がる。','今日やる人が、明日変わる。','積み重ねは、裏切らない。','Better day. Everyday.'];
 const state={
@@ -157,6 +166,9 @@ const state={
  mainSec:900,mainTimer:null,restSec:60,restTimer:null,restPaused:false,
  settings:{visual:localStorage.getItem('visualOn')!=='off',lowPower:localStorage.getItem('lowPower')==='on',bgm:localStorage.getItem('bgmOn')!=='off',track:localStorage.getItem('bgmTrack')||'142',volume:+(localStorage.getItem('bgmVolume')||38),voice:localStorage.getItem('voiceOn')!=='off',cheer:localStorage.getItem('cheerOn')!=='off'}
 };
+
+// 以前の保存データで未設定だったDAYだけ、新しい初期メニューで補完
+[1,4,5].forEach(d=>{if(!state.plan[d]||!state.plan[d].e||state.plan[d].e.length===0)state.plan[d]=JSON.parse(JSON.stringify(BASE[d]))});
 const q=s=>document.querySelector(s),qa=s=>[...document.querySelectorAll(s)];
 function saveSettings(){localStorage.setItem('visualOn',state.settings.visual?'on':'off');localStorage.setItem('lowPower',state.settings.lowPower?'on':'off');localStorage.setItem('bgmOn',state.settings.bgm?'on':'off');localStorage.setItem('bgmTrack',state.settings.track);localStorage.setItem('bgmVolume',state.settings.volume);localStorage.setItem('voiceOn',state.settings.voice?'on':'off');localStorage.setItem('cheerOn',state.settings.cheer?'on':'off')}
 function configured(){return [1,2,3,4,5].filter(d=>state.plan[d].e.length)}
