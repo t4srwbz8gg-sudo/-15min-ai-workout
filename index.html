@@ -41,6 +41,36 @@
 .finishCard{text-align:center;margin-top:60px;position:relative;z-index:3}.finishCard h2{font-size:32px;margin:0}.finishCard p{color:#c9d8dc;line-height:1.6;margin-top:12px}.finishStats{margin-top:22px;border:1px solid var(--line);border-radius:18px;background:rgba(5,13,18,.7);overflow:hidden}.finishRow{display:flex;justify-content:space-between;align-items:center;padding:16px;border-bottom:1px solid rgba(255,255,255,.06)}.finishRow:last-child{border-bottom:0}.finishRow b{font-size:17px}
 .settings label{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:15px 0;border-bottom:1px solid rgba(255,255,255,.07)}.toggle{width:50px;height:30px;appearance:none;background:#283743;border-radius:999px;position:relative}.toggle:after{content:"";position:absolute;top:3px;left:3px;width:24px;height:24px;background:white;border-radius:50%;transition:.2s}.toggle:checked{background:var(--accent)}.toggle:checked:after{left:23px}.select{background:#07151c;color:white;border:1px solid var(--line);border-radius:10px;padding:8px}.recordItem{padding:13px 0;border-bottom:1px solid rgba(255,255,255,.06)}.recordItem:last-child{border-bottom:0}
 @media(max-width:430px){.logoText{font-size:41px}.ring{width:220px;height:220px}.restRing{width:230px;height:230px}.ringNum{font-size:56px}}
+
+.formGuideBtn{width:100%;min-height:48px;margin-top:10px;border-radius:16px;border:1px solid var(--line);background:rgba(5,18,24,.68);color:#e9f8f6;font-weight:900;display:none}
+.formGuideBtn.show{display:block}
+.formModal{display:none;position:fixed;inset:0;z-index:40;background:rgba(0,5,8,.88);padding:20px;align-items:center;justify-content:center}
+.formModal.show{display:flex}
+.formPanel{width:min(100%,520px);max-height:88vh;overflow:auto;border-radius:24px;border:1px solid var(--line);background:linear-gradient(180deg,#081a21,#041016);padding:18px;box-shadow:0 18px 60px rgba(0,0,0,.45)}
+.formPanelHead{display:flex;align-items:flex-start;justify-content:space-between;gap:12px}
+.formPanelHead h3{margin:4px 0 0;font-size:24px}
+.formStage{height:320px;margin-top:16px;border-radius:20px;border:1px solid rgba(87,232,207,.18);background:radial-gradient(circle at 48% 42%,rgba(59,216,190,.16),transparent 34%),linear-gradient(180deg,#0d2028,#061219);position:relative;overflow:hidden}
+.formStage:after{content:"";position:absolute;left:0;right:0;bottom:34px;height:2px;background:linear-gradient(90deg,transparent,rgba(116,236,218,.28),transparent)}
+.bench{position:absolute;left:42px;bottom:75px;width:150px;height:16px;border-radius:8px;background:#25363d;transform:perspective(300px) rotateY(-16deg)}
+.bench:before{content:"";position:absolute;left:14px;top:14px;width:8px;height:58px;background:#18262c;box-shadow:112px 0 0 #18262c}
+.rowMan{position:absolute;left:118px;top:74px;width:150px;height:190px;transform:rotate(-7deg)}
+.rowHead{position:absolute;left:72px;top:0;width:34px;height:34px;border-radius:50%;background:linear-gradient(145deg,#8ff4e0,#45bca8);box-shadow:0 0 18px rgba(87,232,207,.24)}
+.rowTorso{position:absolute;left:62px;top:32px;width:24px;height:93px;border-radius:18px;background:linear-gradient(180deg,#65d9c6,#2f8077);transform-origin:50% 10%;transform:rotate(54deg)}
+.rowLegA,.rowLegB{position:absolute;top:112px;width:16px;height:82px;border-radius:12px;background:#4aa99b;transform-origin:50% 0}
+.rowLegA{left:55px;transform:rotate(19deg)}.rowLegB{left:79px;transform:rotate(-11deg)}
+.rowArmSupport{position:absolute;left:51px;top:72px;width:13px;height:78px;border-radius:10px;background:#5cc8b7;transform-origin:50% 0;transform:rotate(50deg)}
+.rowArmPull{position:absolute;left:93px;top:62px;width:13px;height:80px;border-radius:10px;background:#79e5d2;transform-origin:50% 0;animation:rowPull 1.55s ease-in-out infinite}
+.dumbbell{position:absolute;left:111px;top:137px;width:46px;height:12px;border-radius:6px;background:#c4d2d6;animation:dbPull 1.55s ease-in-out infinite}
+.dumbbell:before,.dumbbell:after{content:"";position:absolute;top:-7px;width:10px;height:26px;border-radius:4px;background:#7d9198}.dumbbell:before{left:-4px}.dumbbell:after{right:-4px}
+.pullArrow{position:absolute;right:48px;top:126px;font-size:42px;color:var(--accent);transform:rotate(-58deg);animation:arrowPulse 1.55s ease-in-out infinite}
+@keyframes rowPull{0%,100%{transform:rotate(-25deg)}50%{transform:rotate(-72deg) translateY(-6px)}}
+@keyframes dbPull{0%,100%{transform:translate(0,0)}50%{transform:translate(-20px,-43px)}}
+@keyframes arrowPulse{0%,100%{opacity:.35;transform:rotate(-58deg) translateY(5px)}50%{opacity:1;transform:rotate(-58deg) translateY(-4px)}}
+.formTips{margin-top:16px;display:grid;gap:9px}
+.formTip{padding:12px 13px;border-radius:14px;background:rgba(255,255,255,.035);border:1px solid rgba(255,255,255,.06);font-size:13px;line-height:1.55}
+.formTip b{color:var(--accent)}
+.formNote{margin-top:12px;font-size:11px;color:var(--muted);line-height:1.55}
+@media (prefers-reduced-motion:reduce){.rowArmPull,.dumbbell,.pullArrow{animation:none}}
 </style>
 </head>
 <body>
@@ -102,6 +132,7 @@
       <div class="metric"><div id="metricProgress" class="v"></div><div class="l">種目</div></div>
     </div>
     <button id="setComplete" class="completeBtn">このセット完了</button>
+    <button id="formGuideBtn" class="formGuideBtn">フォーム確認</button>
   </div>
   <div class="nextCard"><div class="row"><span class="muted mini">次</span><b id="upNext"></b></div></div>
 </section>
@@ -134,6 +165,34 @@
     <button id="finishHome" class="secondary">ホームに戻る</button>
   </div>
 </section>
+</div>
+
+<div id="formModal" class="formModal" aria-hidden="true">
+  <div class="formPanel">
+    <div class="formPanelHead">
+      <div>
+        <div class="mini muted">FORM GUIDE｜試作</div>
+        <h3>ワンハンドロー</h3>
+      </div>
+      <button id="closeFormModal" class="iconBtn" aria-label="閉じる">×</button>
+    </div>
+    <div class="formStage" aria-label="ワンハンドローの簡易フォームアニメーション">
+      <div class="bench"></div>
+      <div class="rowMan">
+        <div class="rowHead"></div><div class="rowTorso"></div>
+        <div class="rowLegA"></div><div class="rowLegB"></div>
+        <div class="rowArmSupport"></div><div class="rowArmPull"></div>
+        <div class="dumbbell"></div>
+      </div>
+      <div class="pullArrow">➜</div>
+    </div>
+    <div class="formTips">
+      <div class="formTip"><b>① 背中</b><br>丸めすぎず、頭から腰までを安定させます。</div>
+      <div class="formTip"><b>② 肘の方向</b><br>真上ではなく、肘を腰・お尻の方向へ引く意識です。</div>
+      <div class="formTip"><b>③ 反動</b><br>上体をひねって持ち上げず、背中で引いてゆっくり戻します。</div>
+    </div>
+    <div class="formNote">※ フォーム理解用の簡易アニメーションです。痛みが出る動きは中止してください。</div>
+  </div>
 </div>
 <audio id="bgmAudio" loop playsinline preload="metadata"></audio>
 <script>
@@ -192,7 +251,7 @@ function renderProgram(day){const r=recommendedDay();q('#dayChoices').innerHTML=
 function speak(text){if(!state.settings.voice||!('speechSynthesis'in window))return;speechSynthesis.cancel();const u=new SpeechSynthesisUtterance(text);u.lang='ja-JP';u.rate=.98;speechSynthesis.speak(u)}
 function announce(){const e=state.plan[state.selectedDay].e[state.exerciseIndex];let t=e.n+'。'+e.w+'キロ'+(e.two?'を両手に。':'。')+e.voice+'。'+state.setIndex+'セット目。';if(state.settings.cheer)t+=['頑張りましょう。','いいペースです。','フォームを意識していきましょう。'][(state.exerciseIndex+state.setIndex)%3];speak(t)}
 function updateMain(){const t=String(Math.floor(state.mainSec/60)).padStart(2,'0')+':'+String(state.mainSec%60).padStart(2,'0');q('#mainTime').textContent=t;q('#mainTimeRest').textContent=t}
-function renderWorkout(){const d=state.plan[state.selectedDay],e=d.e[state.exerciseIndex];q('#exerciseName').textContent=e.n;q('#exerciseMuscle').textContent=e.m;q('#ringSet').textContent=state.setIndex+' / '+e.sets+' SET';q('#ringNum').textContent=e.voice.replace(/[^0-9]/g,'')||'12';q('#ringUnit').textContent=e.r.includes('左右')?'左右回':'回';q('#metricWeight').textContent=e.w+'kg';q('#metricProgress').textContent=(state.exerciseIndex+1)+'/'+d.e.length;q('#upNext').textContent=peekNext()||'このDAY完了';const p=Math.round(state.setIndex/e.sets*100);q('#setRing').style.background='conic-gradient(var(--accent) 0 '+p+'%,rgba(255,255,255,.18) '+p+'% 100%)'}
+function renderWorkout(){const d=state.plan[state.selectedDay],e=d.e[state.exerciseIndex];q('#exerciseName').textContent=e.n;q('#exerciseMuscle').textContent=e.m;q('#ringSet').textContent=state.setIndex+' / '+e.sets+' SET';q('#ringNum').textContent=e.voice.replace(/[^0-9]/g,'')||'12';q('#ringUnit').textContent=e.r.includes('左右')?'左右回':'回';q('#metricWeight').textContent=e.w+'kg';q('#metricProgress').textContent=(state.exerciseIndex+1)+'/'+d.e.length;q('#upNext').textContent=peekNext()||'このDAY完了';q('#formGuideBtn').classList.toggle('show',e.id==='row');const p=Math.round(state.setIndex/e.sets*100);q('#setRing').style.background='conic-gradient(var(--accent) 0 '+p+'%,rgba(255,255,255,.18) '+p+'% 100%)'}
 function peekNext(){const d=state.plan[state.selectedDay],e=d.e[state.exerciseIndex];if(state.setIndex<e.sets)return e.n+' '+(state.setIndex+1)+'セット目';if(state.exerciseIndex<d.e.length-1)return d.e[state.exerciseIndex+1].n+' 1セット目';return ''}
 function startWorkout(){if(!state.plan[state.selectedDay].e.length)return;state.exerciseIndex=0;state.setIndex=1;state.completedSets=0;state.mainSec=900;updateMain();clearInterval(state.mainTimer);state.mainTimer=setInterval(()=>{state.mainSec=Math.max(0,state.mainSec-1);updateMain();if(state.mainSec===0){clearInterval(state.mainTimer);finishWorkout(true)}},1000);if(state.settings.bgm)startBgm();renderWorkout();show('workout');announce()}
 function completeSet(){const d=state.plan[state.selectedDay],e=d.e[state.exerciseIndex];const logs=JSON.parse(localStorage.getItem('logs')||'[]');logs.push({ts:Date.now(),day:state.selectedDay,exercise:e.n,kg:e.w,reps:e.r,set:state.setIndex});localStorage.setItem('logs',JSON.stringify(logs));state.completedSets++;if(state.setIndex<e.sets)state.setIndex++;else if(state.exerciseIndex<d.e.length-1){state.exerciseIndex++;state.setIndex=1}else{finishWorkout(false);return}startRest()}
@@ -206,6 +265,9 @@ function startBgm(){if(!state.settings.bgm)return;const a=q('#bgmAudio');a.src=s
 function stopBgm(){const a=q('#bgmAudio');a.pause();a.currentTime=0}
 function renderRecords(){const logs=JSON.parse(localStorage.getItem('logs')||'[]');q('#recordList').innerHTML=logs.length?logs.slice(-20).reverse().map(l=>'<div class="recordItem"><b>'+l.exercise+'</b><div class="mini muted" style="margin-top:4px">DAY'+l.day+' ・ '+l.kg+'kg ・ '+l.reps+' ・ SET'+l.set+'<br>'+new Date(l.ts).toLocaleString('ja-JP')+'</div></div>').join(''):'<div class="muted">まだ記録はありません。</div>'}
 q('#quickStart').onclick=()=>{state.selectedDay=recommendedDay();startWorkout()};q('#programBtn').onclick=()=>{renderProgram(recommendedDay());show('program')};q('#settingsBtn').onclick=()=>show('settings');q('#recordBtn').onclick=()=>show('records');qa('[data-back]').forEach(b=>b.onclick=()=>show(b.dataset.back));q('#beginWorkout').onclick=startWorkout;q('#setComplete').onclick=completeSet;q('#pauseRest').onclick=()=>{state.restPaused=!state.restPaused;q('#pauseRest').textContent=state.restPaused?'再開':'一時停止'};q('#skipRest').onclick=()=>{clearInterval(state.restTimer);resumeAfterRest()};q('#workoutBack').onclick=()=>{if(confirm('トレーニングを終了しますか？')){clearInterval(state.mainTimer);clearInterval(state.restTimer);stopBgm();show('home')}};q('#restBack').onclick=q('#workoutBack').onclick;q('#repeatDay').onclick=startWorkout;q('#finishHome').onclick=()=>show('home');
+q('#formGuideBtn').onclick=()=>{q('#formModal').classList.add('show');q('#formModal').setAttribute('aria-hidden','false')};
+q('#closeFormModal').onclick=()=>{q('#formModal').classList.remove('show');q('#formModal').setAttribute('aria-hidden','true')};
+q('#formModal').onclick=e=>{if(e.target===q('#formModal'))q('#closeFormModal').click()};
 q('#visualToggle').checked=state.settings.visual;q('#lowPowerToggle').checked=state.settings.lowPower;q('#bgmToggle').checked=state.settings.bgm;q('#bgmTrack').value=state.settings.track;q('#volume').value=state.settings.volume;q('#voiceToggle').checked=state.settings.voice;q('#cheerToggle').checked=state.settings.cheer;
 q('#visualToggle').onchange=e=>{state.settings.visual=e.target.checked;saveSettings();syncVideo(q('.screen.active').id)};q('#lowPowerToggle').onchange=e=>{state.settings.lowPower=e.target.checked;saveSettings();syncVideo(q('.screen.active').id)};q('#bgmToggle').onchange=e=>{state.settings.bgm=e.target.checked;saveSettings();if(!state.settings.bgm)stopBgm()};q('#bgmTrack').onchange=e=>{state.settings.track=e.target.value;saveSettings();if(!q('#bgmAudio').paused)startBgm()};q('#volume').oninput=e=>{state.settings.volume=+e.target.value;saveSettings();q('#bgmAudio').volume=state.settings.volume/100};q('#voiceToggle').onchange=e=>{state.settings.voice=e.target.checked;saveSettings()};q('#cheerToggle').onchange=e=>{state.settings.cheer=e.target.checked;saveSettings()};
 randomQuote();renderHome();syncVideo('home');if('serviceWorker'in navigator)navigator.serviceWorker.register('./sw.js');
