@@ -140,6 +140,29 @@
 .guide-calf .guideMan{animation:calfUp 1.25s ease-in-out infinite}@keyframes calfUp{50%{transform:translate(-50%,-20px) rotateY(-12deg)}}
 
 @media (prefers-reduced-motion:reduce){.guideMan *,.guideMan,.guideArrow{animation:none!important}}
+
+/* growth character */
+.growthCard{margin-top:14px;display:flex;align-items:center;justify-content:space-between;gap:14px;padding:13px 14px;border:1px solid rgba(87,232,207,.18);border-radius:20px;background:rgba(4,18,24,.62);backdrop-filter:blur(8px)}
+.growthCopy{flex:1;min-width:0}.growthCopy b{font-size:18px;letter-spacing:.08em}.xpBar{height:7px;margin-top:9px;border-radius:99px;background:rgba(255,255,255,.1);overflow:hidden}.xpBar i{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--accent),#b7fff3);border-radius:99px;transition:.35s}
+.growthChar{position:relative;width:74px;height:104px;flex:0 0 74px;filter:drop-shadow(0 0 10px rgba(87,232,207,.25));transition:.3s;transform-origin:50% 100%}
+.growthChar span{position:absolute;display:block;background:linear-gradient(90deg,#2c746b,#78e4d1 50%,#2b766c)}
+.gcHead{width:25px;height:25px;border-radius:50%;left:25px;top:2px}.gcBody{width:25px;height:47px;border-radius:14px 14px 10px 10px;left:25px;top:27px}
+.gcArm{width:10px;height:43px;border-radius:9px;top:31px;transform-origin:50% 5%}.a1{left:14px;transform:rotate(12deg)}.a2{right:14px;transform:rotate(-12deg)}
+.gcLeg{width:11px;height:38px;border-radius:9px;top:70px;transform-origin:50% 4%}.l1{left:26px;transform:rotate(5deg)}.l2{right:26px;transform:rotate(-5deg)}
+.growthChar.lv2{transform:scale(1.04)}.growthChar.lv2 .gcBody{width:29px;left:23px}.growthChar.lv3{transform:scale(1.09)}.growthChar.lv3 .gcArm{width:12px}.growthChar.lv3 .gcBody{width:32px;left:21px}.growthChar.lv4{transform:scale(1.14)}.growthChar.lv4 .gcArm{width:14px}.growthChar.lv4 .gcBody{width:35px;left:20px}.growthChar.lv5{transform:scale(1.2)}.growthChar.lv5 .gcArm{width:15px}.growthChar.lv5 .gcBody{width:38px;left:18px;box-shadow:0 0 16px rgba(87,232,207,.35)}
+
+/* muscle map */
+.muscleCard{margin-bottom:14px}.muscleMap{display:flex;justify-content:center;gap:34px;margin:18px 0 12px}.bodyMap{position:relative;width:92px;height:230px}.bodyLabel{position:absolute;left:0;right:0;bottom:-2px;text-align:center;font-size:9px;letter-spacing:.16em;color:var(--muted)}
+.mh,.mb{position:absolute;display:block;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.04);transition:.25s}.mh.head{width:26px;height:28px;border-radius:50%;left:33px;top:2px}
+.chest{width:44px;height:36px;border-radius:18px 18px 13px 13px;left:24px;top:38px}.backArea{width:44px;height:60px;border-radius:18px 18px 12px 12px;left:24px;top:38px}.core{width:30px;height:48px;border-radius:10px;left:31px;top:75px}.glute{width:38px;height:30px;border-radius:12px;left:27px;top:101px}
+.shoulder{width:20px;height:22px;border-radius:50%;top:37px}.sl{left:8px}.sr{right:8px}.arm{width:13px;height:63px;border-radius:10px;top:56px}.al{left:7px;transform:rotate(5deg)}.ar{right:7px;transform:rotate(-5deg)}
+.thigh{width:20px;height:67px;border-radius:12px;top:126px}.tl{left:24px}.tr{right:24px}.calf{width:15px;height:46px;border-radius:10px;top:184px}.cl{left:27px}.cr{right:27px}
+.mb[data-intensity="1"]{background:rgba(87,232,207,.25)}.mb[data-intensity="2"]{background:rgba(87,232,207,.48);box-shadow:0 0 8px rgba(87,232,207,.18)}.mb[data-intensity="3"]{background:rgba(87,232,207,.78);box-shadow:0 0 14px rgba(87,232,207,.34)}
+
+/* auto load feedback */
+.loadFeedback{margin:14px 0 16px;padding:13px;border-radius:16px;background:rgba(255,255,255,.035);border:1px solid rgba(255,255,255,.07)}
+.feedbackBtns{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:9px}.feedbackBtns button{min-height:40px;border-radius:12px;border:1px solid var(--line);background:#0b1c23;color:white;font-weight:800}.feedbackBtns button.selected{border-color:var(--accent);background:rgba(87,232,207,.12);color:var(--accent)}
+.weightAdvice{margin-top:9px;font-size:12px;line-height:1.5;color:#d9efeb}
 </style>
 </head>
 <body>
@@ -159,6 +182,19 @@
     </div>
     <div id="quote" class="quote"></div>
     <div id="recommendText" class="rec"></div>
+    <div class="growthCard">
+      <div class="growthCopy">
+        <div class="mini muted">TRAINING PARTNER</div>
+        <b id="growthTitle">LEVEL 1</b>
+        <div id="growthText" class="mini muted">トレーニングで成長します</div>
+        <div class="xpBar"><i id="xpFill"></i></div>
+      </div>
+      <div id="growthChar" class="growthChar lv1" aria-label="成長キャラクター">
+        <span class="gcHead"></span><span class="gcBody"></span>
+        <span class="gcArm a1"></span><span class="gcArm a2"></span>
+        <span class="gcLeg l1"></span><span class="gcLeg l2"></span>
+      </div>
+    </div>
   </div>
 </section>
 
@@ -184,6 +220,30 @@
 
 <section id="records" class="screen">
   <div class="top"><button class="iconBtn" data-back="home">‹</button><div><div class="brandSmall">RECORDS</div><div class="pageTitle">記録</div></div><div style="width:44px"></div></div>
+  <div class="muscleCard card">
+    <div class="row"><div><div class="brandSmall">MUSCLE MAP</div><b>鍛えた部位</b></div><span class="mini muted">累計セット</span></div>
+    <div class="muscleMap">
+      <div class="bodyMap front">
+        <div class="bodyLabel">FRONT</div>
+        <span class="mh head"></span><span class="mb chest" data-muscle="chest"></span>
+        <span class="mb shoulder sl" data-muscle="shoulder"></span><span class="mb shoulder sr" data-muscle="shoulder"></span>
+        <span class="mb arm al" data-muscle="arms"></span><span class="mb arm ar" data-muscle="arms"></span>
+        <span class="mb core" data-muscle="core"></span>
+        <span class="mb thigh tl" data-muscle="legs"></span><span class="mb thigh tr" data-muscle="legs"></span>
+        <span class="mb calf cl" data-muscle="calves"></span><span class="mb calf cr" data-muscle="calves"></span>
+      </div>
+      <div class="bodyMap back">
+        <div class="bodyLabel">BACK</div>
+        <span class="mh head"></span><span class="mb backArea" data-muscle="back"></span>
+        <span class="mb shoulder sl" data-muscle="shoulder"></span><span class="mb shoulder sr" data-muscle="shoulder"></span>
+        <span class="mb arm al" data-muscle="arms"></span><span class="mb arm ar" data-muscle="arms"></span>
+        <span class="mb glute" data-muscle="glutes"></span>
+        <span class="mb thigh tl" data-muscle="legs"></span><span class="mb thigh tr" data-muscle="legs"></span>
+        <span class="mb calf cl" data-muscle="calves"></span><span class="mb calf cr" data-muscle="calves"></span>
+      </div>
+    </div>
+    <div id="muscleLegend" class="mini muted"></div>
+  </div>
   <div id="recordList" class="card"></div>
 </section>
 
@@ -229,6 +289,15 @@
       <div class="finishRow"><span>トレーニング時間</span><b id="finishTime">15:00</b></div>
       <div class="finishRow"><span>完了したセット</span><b id="finishSets">0 set</b></div>
       <div class="finishRow"><span>次回おすすめ</span><b id="finishNext">DAY2</b></div>
+    </div>
+    <div id="loadFeedback" class="loadFeedback">
+      <div class="mini muted">今日の負荷はどうでしたか？</div>
+      <div class="feedbackBtns">
+        <button data-load="easy">余裕</button>
+        <button data-load="good">ちょうどいい</button>
+        <button data-load="hard">キツい</button>
+      </div>
+      <div id="weightAdvice" class="weightAdvice"></div>
     </div>
     <button id="repeatDay" class="primary">もう一度やる</button>
     <button id="finishHome" class="secondary">ホームに戻る</button>
@@ -315,7 +384,55 @@ function syncVideo(id){
  if(use){v.play().catch(()=>{})}else v.pause()
 }
 function show(id){qa('.screen').forEach(x=>x.classList.toggle('active',x.id===id));syncVideo(id);if(id==='home'){randomQuote();renderHome()}if(id==='records')renderRecords()}
-function renderHome(){const r=recommendedDay();q('#recommendText').textContent='おすすめ：'+state.plan[r].t}
+
+const DB_WEIGHTS=[4,5.5,7,8.5,10,11.5,13,14.5,16,17.5,19,20.5,22,23.5,25,26.5,28,29.5,31,32.5,34,35.5,37,38.5,40,41.5];
+const MUSCLE_GROUPS={
+ 'ダンベルベンチプレス':['chest','arms','shoulder'],'ダンベルフライ':['chest'],'オーバーヘッドトライセプスEX':['arms'],
+ 'ワンハンドロー':['back','arms'],'リバースフライ':['back','shoulder'],'ダンベルカール':['arms'],
+ 'ダンベルスクワット':['legs','glutes'],'ブルガリアンスクワット':['legs','glutes'],'ルーマニアンデッドリフト':['legs','glutes','back'],
+ 'ダンベルショルダープレス':['shoulder','arms'],'サイドレイズ':['shoulder'],'フロントレイズ':['shoulder'],
+ 'ダンベルスラスター':['legs','shoulder','glutes'],'ハンマーカール':['arms'],'ダンベルカーフレイズ':['calves']
+};
+function getTrainingStats(){
+ const logs=JSON.parse(localStorage.getItem('logs')||'[]');
+ const muscles={chest:0,back:0,shoulder:0,arms:0,core:0,legs:0,glutes:0,calves:0};
+ logs.forEach(l=>(MUSCLE_GROUPS[l.exercise]||[]).forEach(m=>muscles[m]++));
+ return {sets:logs.length,muscles};
+}
+function growthLevel(sets){return sets>=250?5:sets>=150?4:sets>=80?3:sets>=30?2:1}
+function growthNext(level){return [0,30,80,150,250,400][level]||400}
+function renderGrowth(){
+ const st=getTrainingStats(),lv=growthLevel(st.sets),prev=[0,0,30,80,150,250][lv]||0,next=growthNext(lv);
+ const pct=lv===5?100:Math.max(0,Math.min(100,(st.sets-prev)/(next-prev)*100));
+ if(q('#growthChar'))q('#growthChar').className='growthChar lv'+lv;
+ if(q('#growthTitle'))q('#growthTitle').textContent='LEVEL '+lv;
+ if(q('#growthText'))q('#growthText').textContent=lv===5?'MAX成長！ 累計 '+st.sets+'セット':'累計 '+st.sets+'セット ・ 次の成長まで '+Math.max(0,next-st.sets)+'セット';
+ if(q('#xpFill'))q('#xpFill').style.width=pct+'%';
+}
+function renderMuscleMap(){
+ const st=getTrainingStats(),vals=Object.values(st.muscles),max=Math.max(1,...vals);
+ qa('[data-muscle]').forEach(el=>{const v=st.muscles[el.dataset.muscle]||0;const r=v/max;el.dataset.intensity=v===0?'0':r>.66?'3':r>.33?'2':'1'});
+ const names={chest:'胸',back:'背中',shoulder:'肩',arms:'腕',core:'体幹',legs:'脚',glutes:'臀部',calves:'ふくらはぎ'};
+ const top=Object.entries(st.muscles).sort((a,b)=>b[1]-a[1]).filter(x=>x[1]>0).slice(0,3);
+ if(q('#muscleLegend'))q('#muscleLegend').textContent=top.length?'よく鍛えている部位：'+top.map(x=>names[x[0]]+' '+x[1]+'set').join(' / '):'トレーニングすると部位が光ります';
+}
+function stepWeight(w,dir){
+ let i=DB_WEIGHTS.findIndex(x=>Math.abs(x-w)<0.001);
+ if(i<0)i=DB_WEIGHTS.reduce((best,x,j)=>Math.abs(x-w)<Math.abs(DB_WEIGHTS[best]-w)?j:best,0);
+ return DB_WEIGHTS[Math.max(0,Math.min(DB_WEIGHTS.length-1,i+dir))];
+}
+function applyLoadFeedback(kind){
+ const d=state.plan[state.selectedDay],dir=kind==='easy'?1:kind==='hard'?-1:0;
+ const before=d.e.map(e=>e.w);
+ if(dir!==0)d.e.forEach(e=>e.w=stepWeight(e.w,dir));
+ localStorage.setItem('plan',JSON.stringify(state.plan));
+ const after=d.e.map(e=>e.w);
+ const label=kind==='easy'?'次回は1段階アップ':kind==='hard'?'次回は1段階ダウン':'次回も同じ重量';
+ q('#weightAdvice').textContent=label+(dir!==0?'（'+before[0]+'kg → '+after[0]+'kg など）':'');
+ qa('[data-load]').forEach(b=>b.classList.toggle('selected',b.dataset.load===kind));
+ localStorage.setItem('lastLoadFeedback',JSON.stringify({ts:Date.now(),day:state.selectedDay,kind,before,after}));
+}
+function renderHome(){const r=recommendedDay();q('#recommendText').textContent='おすすめ：'+state.plan[r].t;renderGrowth()}
 function renderProgram(day){const r=recommendedDay();q('#dayChoices').innerHTML=[1,2,3,4,5].map(d=>'<button class="day '+(d===r?'recommended ':'')+(!state.plan[d].e.length?'disabled':'')+'" data-day="'+d+'">DAY'+d+'</button>').join('');qa('.day').forEach(b=>b.onclick=()=>{const d=+b.dataset.day;if(!state.plan[d].e.length){alert('DAY'+d+'はまだ未設定です。');return}state.selectedDay=d;renderProgram(d)});const d=day?state.plan[day]:null;q('#programList').innerHTML=d?'<div class="card"><div class="row"><div><b>'+d.t+'</b><div class="mini muted" style="margin-top:4px">'+d.s+'</div></div><span class="pill">15分</span></div></div>'+d.e.map((e,i)=>'<div class="card"><div class="row"><div><b>'+(i+1)+'. '+e.n+'</b><div class="mini muted" style="margin-top:5px">'+e.w+'kg'+(e.two?' × 2':'')+' ／ '+e.r+' ／ '+e.sets+'セット</div></div><span class="pill">'+e.m+'</span></div></div>').join(''):'';q('#beginWorkout').style.display=d?'block':'none'}
 function speak(text){if(!state.settings.voice||!('speechSynthesis'in window))return;speechSynthesis.cancel();const u=new SpeechSynthesisUtterance(text);u.lang='ja-JP';u.rate=.98;speechSynthesis.speak(u)}
 function announce(){const e=state.plan[state.selectedDay].e[state.exerciseIndex];let t=e.n+'。'+e.w+'キロ'+(e.two?'を両手に。':'。')+e.voice+'。'+state.setIndex+'セット目。';if(state.settings.cheer)t+=['頑張りましょう。','いいペースです。','フォームを意識していきましょう。'][(state.exerciseIndex+state.setIndex)%3];speak(t)}
@@ -356,12 +473,13 @@ function tickRest(){if(state.restPaused)return;state.restSec--;q('#restTime').te
 function currentLabel(){const e=state.plan[state.selectedDay].e[state.exerciseIndex];return e.n+' '+state.setIndex+'セット目'}
 function resumeAfterRest(){show('workout');renderWorkout();speak('レスト終了。次のセットです。');setTimeout(announce,1100)}
 function recommendedAfter(day){for(let i=1;i<=5;i++){const d=((day-1+i)%5)+1;if(state.plan[d].e.length)return d}return day}
-function finishWorkout(timeup){clearInterval(state.mainTimer);clearInterval(state.restTimer);stopBgm();if('speechSynthesis'in window)speechSynthesis.cancel();state.lastDay=state.selectedDay;localStorage.setItem('lastCompletedDay',String(state.lastDay));q('#finishSets').textContent=state.completedSets+' set';q('#finishNext').textContent='DAY'+recommendedAfter(state.selectedDay);q('#finishTime').textContent=timeup?'15:00':String(Math.floor((900-state.mainSec)/60)).padStart(2,'0')+':'+String((900-state.mainSec)%60).padStart(2,'0');show('finish');if(state.settings.voice)setTimeout(()=>speak('お疲れさまでした。今日のトレーニングは終了です。'),250)}
+function finishWorkout(timeup){clearInterval(state.mainTimer);clearInterval(state.restTimer);stopBgm();if('speechSynthesis'in window)speechSynthesis.cancel();state.lastDay=state.selectedDay;localStorage.setItem('lastCompletedDay',String(state.lastDay));q('#finishSets').textContent=state.completedSets+' set';q('#weightAdvice').textContent='';qa('[data-load]').forEach(b=>b.classList.remove('selected'));q('#finishNext').textContent='DAY'+recommendedAfter(state.selectedDay);q('#finishTime').textContent=timeup?'15:00':String(Math.floor((900-state.mainSec)/60)).padStart(2,'0')+':'+String((900-state.mainSec)%60).padStart(2,'0');show('finish');if(state.settings.voice)setTimeout(()=>speak('お疲れさまでした。今日のトレーニングは終了です。'),250)}
 function startBgm(){if(!state.settings.bgm)return;const a=q('#bgmAudio');a.src=state.settings.track==='118'?'./249_long_BPM118.mp3':'./126_long_BPM142.mp3';a.volume=state.settings.volume/100;a.play().catch(()=>{})}
 function stopBgm(){const a=q('#bgmAudio');a.pause();a.currentTime=0}
-function renderRecords(){const logs=JSON.parse(localStorage.getItem('logs')||'[]');q('#recordList').innerHTML=logs.length?logs.slice(-20).reverse().map(l=>'<div class="recordItem"><b>'+l.exercise+'</b><div class="mini muted" style="margin-top:4px">DAY'+l.day+' ・ '+l.kg+'kg ・ '+l.reps+' ・ SET'+l.set+'<br>'+new Date(l.ts).toLocaleString('ja-JP')+'</div></div>').join(''):'<div class="muted">まだ記録はありません。</div>'}
+function renderRecords(){const logs=JSON.parse(localStorage.getItem('logs')||'[]');q('#recordList').innerHTML=logs.length?logs.slice(-20).reverse().map(l=>'<div class="recordItem"><b>'+l.exercise+'</b><div class="mini muted" style="margin-top:4px">DAY'+l.day+' ・ '+l.kg+'kg ・ '+l.reps+' ・ SET'+l.set+'<br>'+new Date(l.ts).toLocaleString('ja-JP')+'</div></div>').join(''):'<div class="muted">まだ記録はありません。</div>';renderMuscleMap()}
 q('#quickStart').onclick=()=>{state.selectedDay=recommendedDay();startWorkout()};q('#programBtn').onclick=()=>{renderProgram(recommendedDay());show('program')};q('#settingsBtn').onclick=()=>show('settings');q('#recordBtn').onclick=()=>show('records');qa('[data-back]').forEach(b=>b.onclick=()=>show(b.dataset.back));q('#beginWorkout').onclick=startWorkout;q('#setComplete').onclick=completeSet;q('#pauseRest').onclick=()=>{state.restPaused=!state.restPaused;q('#pauseRest').textContent=state.restPaused?'再開':'一時停止'};q('#skipRest').onclick=()=>{clearInterval(state.restTimer);resumeAfterRest()};q('#workoutBack').onclick=()=>{if(confirm('トレーニングを終了しますか？')){clearInterval(state.mainTimer);clearInterval(state.restTimer);stopBgm();show('home')}};q('#restBack').onclick=q('#workoutBack').onclick;q('#repeatDay').onclick=startWorkout;q('#finishHome').onclick=()=>show('home');
 q('#formGuideBtn').onclick=openFormGuide;
+qa('[data-load]').forEach(b=>b.onclick=()=>applyLoadFeedback(b.dataset.load));
 q('#closeFormModal').onclick=()=>{q('#formModal').classList.remove('show');q('#formModal').setAttribute('aria-hidden','true')};
 q('#formModal').onclick=e=>{if(e.target===q('#formModal'))q('#closeFormModal').click()};
 q('#visualToggle').checked=state.settings.visual;q('#lowPowerToggle').checked=state.settings.lowPower;q('#bgmToggle').checked=state.settings.bgm;q('#bgmTrack').value=state.settings.track;q('#volume').value=state.settings.volume;q('#voiceToggle').checked=state.settings.voice;q('#cheerToggle').checked=state.settings.cheer;
