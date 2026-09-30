@@ -64,6 +64,13 @@
 .loadFeedback{margin:14px 0 16px;padding:13px;border-radius:16px;background:rgba(255,255,255,.035);border:1px solid rgba(255,255,255,.07)}
 .feedbackBtns{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:9px}.feedbackBtns button{min-height:40px;border-radius:12px;border:1px solid var(--line);background:#0b1c23;color:white;font-weight:800}.feedbackBtns button.selected{border-color:var(--accent);background:rgba(87,232,207,.12);color:var(--accent)}
 .weightAdvice{margin-top:9px;font-size:12px;line-height:1.5;color:#d9efeb}
+
+.formStaticCard{margin-top:14px;padding:12px;border-radius:18px;border:1px solid rgba(87,232,207,.16);background:rgba(4,18,24,.72);backdrop-filter:blur(8px)}
+.formStaticHead{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:9px;font-size:13px;font-weight:900;letter-spacing:.04em}
+.formStaticArt{width:100%;aspect-ratio:1.82/1;border-radius:14px;background-image:url('./assets/form-guide-sprite.jpg');background-size:300% 500%;background-repeat:no-repeat;background-color:#f7f8f8;border:1px solid rgba(255,255,255,.12);box-shadow:0 8px 22px rgba(0,0,0,.18)}
+.formStaticTips{list-style:none;margin:10px 0 0;padding:0;display:grid;gap:6px}
+.formStaticTips li{font-size:12px;line-height:1.45;padding:8px 9px;border-radius:10px;background:rgba(255,255,255,.035);color:#e7f2f0}
+.formStaticTips li:before{content:'✓';color:var(--accent);font-weight:900;margin-right:7px}
 </style>
 </head>
 <body>
@@ -160,6 +167,12 @@
       <div class="metric"><div id="metricWeight" class="v"></div><div class="l">重量</div></div>
       <div class="metric"><div id="metricRest" class="v">60秒</div><div class="l">休憩</div></div>
       <div class="metric"><div id="metricProgress" class="v"></div><div class="l">種目</div></div>
+    </div>
+
+    <div class="formStaticCard">
+      <div class="formStaticHead"><span>フォームのポイント</span><span class="mini muted">画像＋説明</span></div>
+      <div id="formArt" class="formStaticArt" role="img" aria-label="種目フォーム説明画像"></div>
+      <ul id="formText" class="formStaticTips"></ul>
     </div>
     <button id="setComplete" class="completeBtn">このセット完了</button>
   </div>
@@ -311,7 +324,33 @@ function speak(text){if(!state.settings.voice||!('speechSynthesis'in window))ret
 function announce(){const e=state.plan[state.selectedDay].e[state.exerciseIndex];let t=e.n+'。'+e.w+'キロ'+(e.two?'を両手に。':'。')+e.voice+'。'+state.setIndex+'セット目。';if(state.settings.cheer)t+=['頑張りましょう。','いいペースです。','フォームを意識していきましょう。'][(state.exerciseIndex+state.setIndex)%3];speak(t)}
 function updateMain(){const t=String(Math.floor(state.mainSec/60)).padStart(2,'0')+':'+String(state.mainSec%60).padStart(2,'0');q('#mainTime').textContent=t;q('#mainTimeRest').textContent=t}
 
-function renderWorkout(){const d=state.plan[state.selectedDay],e=d.e[state.exerciseIndex];q('#exerciseName').textContent=e.n;q('#exerciseMuscle').textContent=e.m;q('#ringSet').textContent=state.setIndex+' / '+e.sets+' SET';q('#ringNum').textContent=e.voice.replace(/[^0-9]/g,'')||'12';q('#ringUnit').textContent=e.r.includes('左右')?'左右回':'回';q('#metricWeight').textContent=e.w+'kg';q('#metricProgress').textContent=(state.exerciseIndex+1)+'/'+d.e.length;q('#upNext').textContent=peekNext()||'このDAY完了';const p=Math.round(state.setIndex/e.sets*100);q('#setRing').style.background='conic-gradient(var(--accent) 0 '+p+'%,rgba(255,255,255,.18) '+p+'% 100%)'}
+
+const FORM_STATIC={
+ press:{row:0,col:0,tips:['肩甲骨を寄せて胸を軽く張る','肘を真横に開きすぎない','胸の上で押し上げ、肩をすくめない']},
+ fly:{row:0,col:1,tips:['肘を軽く曲げた角度を保つ','胸が伸びる位置までゆっくり開く','胸で抱き込むようにゆっくり戻す']},
+ tri:{row:0,col:2,tips:['肘を頭の横に固定する','肘から先を動かす','腰を反らせすぎない']},
+ row:{row:1,col:0,tips:['背中を丸めず体幹を安定させる','肘を腰・お尻方向へ引く','上体をひねる反動を使わない']},
+ rf:{row:1,col:1,tips:['股関節から上体を倒し背中をまっすぐにする','肘を軽く曲げたまま横へ開く','肩をすくめず肩甲骨周辺を使う']},
+ curl:{row:1,col:2,tips:['肘を体の横で固定する','肩を振って反動を使わない','下ろす動作もゆっくり行う']},
+ sq:{row:2,col:0,tips:['膝とつま先を同じ方向に向ける','胸を落とさず股関節と膝を曲げる','足裏全体で床を押して立つ']},
+ bg:{row:2,col:1,tips:['前足にしっかり体重を乗せる','膝が内側へ入らないようにする','真下へ沈み前脚とお尻で戻る']},
+ rdl:{row:2,col:2,tips:['膝は軽く曲げたまま保つ','お尻を後ろへ引き股関節から倒す','ダンベルを脚の近くに沿わせる']},
+ sp:{row:3,col:0,tips:['肘を肩より少し前に構える','腰を反らせず真上へ押す','肩をすくめずコントロールする']},
+ lat:{row:3,col:1,tips:['肘を軽く曲げ肩の高さ付近まで上げる','手首ではなく肘から動かす','反動を使わずゆっくり下ろす']},
+ front:{row:3,col:2,tips:['腕を前方へ肩の高さまで上げる','腰の反動を使わない','肩をすくめずゆっくり戻す']},
+ thruster:{row:4,col:0,tips:['スクワットから立つ勢いを上へつなげる','膝とつま先を同じ方向にする','最後はダンベルを頭上で安定させる']},
+ hammer:{row:4,col:1,tips:['手のひらを向かい合わせたまま持つ','肘を体の横で固定する','上体を振らず腕で上げる']},
+ calf:{row:4,col:2,tips:['足首をまっすぐ保つ','かかとをできるだけ高く上げる','頂点で一瞬止まりゆっくり下ろす']}
+};
+function renderStaticGuide(e){
+ const g=FORM_STATIC[e.id];
+ if(!g)return;
+ const xs=['0%','50%','100%'],ys=['0%','25%','50%','75%','100%'];
+ q('#formArt').style.backgroundPosition=xs[g.col]+' '+ys[g.row];
+ q('#formArt').setAttribute('aria-label',e.n+' のフォーム説明画像');
+ q('#formText').innerHTML=g.tips.map(t=>'<li>'+t+'</li>').join('');
+}
+function renderWorkout(){const d=state.plan[state.selectedDay],e=d.e[state.exerciseIndex];q('#exerciseName').textContent=e.n;q('#exerciseMuscle').textContent=e.m;q('#ringSet').textContent=state.setIndex+' / '+e.sets+' SET';q('#ringNum').textContent=e.voice.replace(/[^0-9]/g,'')||'12';q('#ringUnit').textContent=e.r.includes('左右')?'左右回':'回';q('#metricWeight').textContent=e.w+'kg';q('#metricProgress').textContent=(state.exerciseIndex+1)+'/'+d.e.length;q('#upNext').textContent=peekNext()||'このDAY完了';renderStaticGuide(e);const p=Math.round(state.setIndex/e.sets*100);q('#setRing').style.background='conic-gradient(var(--accent) 0 '+p+'%,rgba(255,255,255,.18) '+p+'% 100%)'}
 function peekNext(){const d=state.plan[state.selectedDay],e=d.e[state.exerciseIndex];if(state.setIndex<e.sets)return e.n+' '+(state.setIndex+1)+'セット目';if(state.exerciseIndex<d.e.length-1)return d.e[state.exerciseIndex+1].n+' 1セット目';return ''}
 function startWorkout(){if(!state.plan[state.selectedDay].e.length)return;state.exerciseIndex=0;state.setIndex=1;state.completedSets=0;state.mainSec=900;updateMain();clearInterval(state.mainTimer);state.mainTimer=setInterval(()=>{state.mainSec=Math.max(0,state.mainSec-1);updateMain();if(state.mainSec===0){clearInterval(state.mainTimer);finishWorkout(true)}},1000);if(state.settings.bgm)startBgm();renderWorkout();show('workout');announce()}
 function completeSet(){const d=state.plan[state.selectedDay],e=d.e[state.exerciseIndex];const logs=JSON.parse(localStorage.getItem('logs')||'[]');logs.push({ts:Date.now(),day:state.selectedDay,exercise:e.n,kg:e.w,reps:e.r,set:state.setIndex});localStorage.setItem('logs',JSON.stringify(logs));state.completedSets++;if(state.setIndex<e.sets)state.setIndex++;else if(state.exerciseIndex<d.e.length-1){state.exerciseIndex++;state.setIndex=1}else{finishWorkout(false);return}startRest()}
